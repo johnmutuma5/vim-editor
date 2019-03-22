@@ -10,7 +10,9 @@ let NERDTreeShowHidden=1
 
 :let mapleader=","
 :let localleader=",,"
-"
+
+" Initiate Pathogen
+execute pathogen#infect() 
 "
 " Mappings
 " put up - move a line up
@@ -30,7 +32,7 @@ let NERDTreeShowHidden=1
 " Uppercase current word insert mode
 :inoremap <c-u> <esc>magUiw`aa
 " Open file in vertical split with under cursor name in same dir as current file
-:nnoremap <leader>of :vertical wincmd f<CR>
+:nnoremap <leader>gf :vertical wincmd f<CR>
 " go to the first character of the current line
 :noremap H ^
 " go to the last character of the current line
@@ -225,6 +227,7 @@ endif
 call plug#begin()
 
 	Plug 'scrooloose/nerdtree'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 	Plug 'flazz/vim-colorschemes'
 	Plug 'crusoexia/vim-monokai'
 	Plug 'pangloss/vim-javascript'
@@ -237,7 +240,6 @@ call plug#begin()
   Plug 'valloric/youcompleteme'
   Plug 'tpope/vim-commentary'
   Plug 'ryanoasis/vim-devicons'
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'vim-utils/vim-line'
   Plug 'tpope/vim-fugitive'
   Plug 'itchyny/lightline.vim'
@@ -248,12 +250,13 @@ call plug#begin()
   Plug 'ekalinin/dockerfile.vim'
   Plug 'leafgarland/typescript-vim'
   Plug 'davidhalter/jedi-vim'
+  Plug 'vim-python/python-syntax'
 
 call plug#end()
 let g:jedi#completions_enabled=1
 " Configure ALE linter
 let g:ale_lint_on_text_changed = 'never'
-
+let g:python_highlight_all = 1
 " ignore some html5 errors
 " let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 
@@ -279,10 +282,56 @@ let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = '📁'
 let g:DevIconsDefaultFolderCloseSymbol = '📁'
 let g:DevIconsDefaultFolderOpenSymbol = '📂'
 let g:NERDTreeDisablePatternMatchHighlight = 1
-let g:NERDTreeSyntaxDisableDefaultExtensions = 1
-let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
-let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+" let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+" let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+" let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 let g:NERDTreeSyntaxEnabledExtensions = ['py', 'jsx', 'js', 'scss',  'css', 'md']
+let s:blue = "689FB6"
+let s:brown = "905532"
+let s:aqua =  "3AFFDB"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:rspec_red = 'FE405F'
+let s:git_orange = 'F54D27'
+let s:gold_color = 'FFD700'
+let s:deepskyblue = '00BFFF'
+let s:mediumseagreen = '3CB371'
+let s:lawngreen = 'ADFF2F'
+let s:stickynoteyellow = 'FFFACD'
+
+let g:NERDTreeExtensionHighlightColor = {}
+let g:NERDTreeExtensionHighlightColor[''] = s:stickynoteyellow
+let g:NERDTreeExtensionHighlightColor['vim'] = s:lawngreen
+let g:NERDTreeExtensionHighlightColor['js'] = s:gold_color
+let g:NERDTreeExtensionHighlightColor['py'] = s:blue
+let g:NERDTreeExtensionHighlightColor['scss'] = s:salmon
+let g:NERDTreeExtensionHighlightColor['css'] = s:deepskyblue
+let g:NERDTreeExtensionHighlightColor['jsx'] = s:aqua
+let g:NERDTreeExtensionHighlightColor['json'] = s:lightPurple
+let g:NERDTreeExtensionHighlightColor['md'] = s:mediumseagreen
+let g:NERDTreeExtensionHighlightColor['yml'] = s:blue
+let g:NERDTreeExtensionHighlightColor['yaml'] = s:blue
+let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreePatternMatchHighlightColor['.+\.html\*?$'] = s:darkOrange
+let g:NERDTreePatternMatchHighlightColor['^Dockerfile.*'] = s:blue
+let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange
+let g:NERDTreeExactMatchHighlightColor['.vimrc'] = s:lawngreen
+let g:NERDTreeExactMatchHighlightColor['.gitignore*'] = s:git_orange
+let g:NERDTreeExactMatchHighlightColor['Dockerfile'] = s:blue
+"
 " let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list = 1
 " let g:syntastic_check_on_open = 1
@@ -310,3 +359,6 @@ set guioptions-=e  " Don't use GUI tabline
 let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
 let g:vim_markdown_fenced_languages = ['javascript=js', 'python=py', 'html=html', 'css=css']
 let g:vim_markdown_folding_level = 2
+
+
+
