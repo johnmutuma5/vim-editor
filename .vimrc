@@ -1,11 +1,22 @@
-:set backspace=2
+:set backup                    " keep a backup file
+:set backupdir=$HOME/.vim/_backups
+:set directory=$HOME/.vim/_swp
 :set number
+:set cursorline
 :set relativenumber " show existing tab with 2 spaces width
-set tabstop=2
+:set tabstop=2
+:set foldmethod=syntax
+:set foldlevel=15
+:set wildignore=*/**/node_modules/*
 " when indenting with '>', use 2 spaces width
 set shiftwidth=2
 " On pressing tab, insert 2 spaces
 set expandtab
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
 let NERDTreeShowHidden=1
 
 :let mapleader=","
@@ -13,6 +24,7 @@ let NERDTreeShowHidden=1
 
 " Initiate Pathogen
 execute pathogen#infect() 
+"
 "
 " Mappings
 " put up - move a line up
@@ -34,14 +46,34 @@ execute pathogen#infect()
 " Open file in vertical split with under cursor name in same dir as current file
 :nnoremap <leader>gf :vertical wincmd f<CR>
 " go to the first character of the current line
-:noremap H ^
+" :noremap H ^
 " go to the last character of the current line
-:noremap L $
+" :noremap L $
+" go to top of file - the native H which has been consumed by start of line
+:noremap <leader>ct :normal! H<CR>
+" go to bottom of file - the native H which has been consumed by start of line
+:noremap <leader>cb :normal! L<CR>
+" go to middle of file - the native M
+:noremap <leader>cc :normal! M<CR>
 " go into normal mode quickly
 :inoremap jk <esc>
 " add space and remain in normal mode
-:nnoremap <cr> O<esc>j
+:nnoremap <CR> :nohlsearch<CR>:<CR>
+" " use very magic when searching
+" :nnoremap / /\v
+" :nnoremap ? ?\v
+" use: disregard wrap with j and k 
+:nnoremap j gj
+:nnoremap k gk
 "
+"
+" use Ctrl + j to move windows
+:nnoremap <c-j> <c-w>j
+:nnoremap <c-l> <c-w>l
+:nnoremap <c-h> <c-w>h
+:nnoremap <c-k> <c-w>k
+:nnoremap <c-c> <c-w>c
+" 
 "
 " auto close { braces into block mode
 :inoremap {<cr> {<cr>}<esc>O
@@ -50,6 +82,8 @@ execute pathogen#infect()
 " auto close ( brackets into block mode
 :inoremap (<cr> (<cr>)<esc>O
 "
+" cbange inside []
+" :inoremap cir ci[
 "
 " auto close ( inline mode
 :inoremap (cc ()<left>
@@ -76,6 +110,16 @@ execute pathogen#infect()
 :inoremap <C-k> <up>
 " move down with ctrl-j in insert mode
 :inoremap <C-j> <down>
+:nnoremap <left> :<CR>
+:nnoremap <up> :<CR>
+:nnoremap <right> :<CR>
+:nnoremap <down> :<CR>
+:inoremap <left> <ESC>a
+:inoremap <up> <Esc>a
+:inoremap <right> <Esc>a
+:inoremap <down> <Esc>a
+:nnoremap <leader>hco :ColorHighlight<CR> 
+:nnoremap <leader>hcc :ColorClear<CR>
 "
 " auto close " inline mode
 :inoremap "cc ""<left>
@@ -83,11 +127,14 @@ execute pathogen#infect()
 :inoremap 'cc ''<left>
 " auto close ` inline mode
 :inoremap `cc ``<left>
-
+" 
+" CtrlP
+:nnoremap <C-p>f :CtrlP<cr>
+:nnoremap <C-p>b :CtrlPMRUFiles<cr>
 
 " open previous buffer to the right
 "
-:nnoremap <leader>pr :execute "rightbelow :vsplit " . bufname("#")<CR>
+:nnoremap <leader>pr :execute "rightbelow :vsplit " . bufname("#")<CR>:wincmd p<CR>
 "
 " highlight trailing white space
 :nnoremap <leader>ts :vimgrep /\v\s+$/ %<CR>:copen<CR>
@@ -156,9 +203,26 @@ endfunction
 :nnoremap <leader>tqf :call <SID>ToggleQuickFix()<CR>
 "}}}
 
+" TogglCursorLine <leader>tcl {{{
+function! s:ToggleCursorLine ()
+  setlocal cursorline!
+  endfunction
+
+:nnoremap <leader>tcl :call <SID>ToggleCursorLine()<CR>
+"}}}
+
+" ToggleCursorColumn <leader>tcc
+function! s:ToggleCursorColumn ()
+  setlocal cursorcolumn!
+endfunction
+
+:nnoremap <leader>tcc :call <SID>ToggleCursorColumn()<CR>
+
+
 "}}}
 
 " Auto commands {{{
+
 " VimEnter Auto commands {{{
 augroup nerd_tree
   :autocmd!
@@ -167,6 +231,16 @@ augroup nerd_tree
   " :autocmd TabEnter * :NERDTree Documents/Projects/ 
 augroup END
 " End VimEnter Auto commands }}}
+
+" BufEnter Auto commands {{{
+augroup set_filetype
+  :autocmd!
+  " Open Nerd tree in Projects folder
+  :autocmd BufEnter *.cmp,*.evt :set filetype=html
+  :autocmd BufEnter *.js :set filetype=typescript
+  " :autocmd TabEnter * :NERDTree Documents/Projects/ 
+augroup END
+" End BufEnter Auto commands }}}
 
 " FileType Auto commands {{{
 " Eatchar {{{
@@ -191,22 +265,40 @@ augroup END
 " Python FileType Auto commands{{{
 augroup filetype_py
   :autocmd!
-  :autocmd FileType python* :setlocal shiftwidth=4 tabstop=4 
+  :autocmd FileType python*,html*,xml* :setlocal shiftwidth=4 tabstop=4 
 augroup END
 " End Python FileType Auto commands}}}
+
+" Jupyter Notebooks Auto commands{{{
+augroup jupyter_notebooks
+  :autocmd!
+  :autocmd Filetype ipynb nmap <silent><Leader>ib :VimpyterInsertPythonBlock<CR>
+  :autocmd Filetype ipynb nmap <silent><Leader>sj :VimpyterStartJupyter<CR>
+  " :autocmd Filetype ipynb nmap <silent><Leader>n :VimpyterStartNteract<CR>
+augroup END
+"}}}
+
 " End FileType Auto commands}}}
+
 " End Auto commands}}}
 
 " TransferBufferToNewTab {{{
 function! s:TransferBufferToNewTab()
   " store the current filename in variable to use in split
   let cur_filename = fnamemodify(expand('%'), ':p')
+  let cur_line = line('.')
+  let cur_col = col('.')
   " close the current buffer
   execute winnr() . 'wincmd q' 
   " open the filename in new tab
   execute "tab split " . cur_filename 
   NERDTree
-  execute "2wincmd w"
+  execute "wincmd p"
+  " go to cursor position
+  execute "normal! " . cur_line . "G"
+  execute "normal! " . cur_col . "|"
+  " scroll current line to  middle of screen
+  normal! zz 
 endfunction
 
 :nnoremap <leader>gt :call <SID>TransferBufferToNewTab()<CR>
@@ -219,6 +311,8 @@ endfunction
 
 :nnoremap <leader>qt :call <SID>QuitCurrentTab()<CR>
 "}}}
+
+:nnoremap <leader>ttb :TagbarToggle<CR>
 
 if !exists('g:syntax_on')
 	syntax enable
@@ -234,7 +328,6 @@ call plug#begin()
 	Plug 'crusoexia/vim-javascript-lib'
 	Plug 'mxw/vim-jsx'
   Plug 'w0rp/ale'
-	" Plug 'scrooloose/syntastic'
   Plug 'tomasr/molokai'
 	Plug 'tpope/vim-surround'
   Plug 'valloric/youcompleteme'
@@ -251,9 +344,33 @@ call plug#begin()
   Plug 'leafgarland/typescript-vim'
   Plug 'davidhalter/jedi-vim'
   Plug 'vim-python/python-syntax'
+  Plug 'szymonmaszke/vimpyter'
+  Plug 'cakebaker/scss-syntax.vim'
+  Plug 'hail2u/vim-css3-syntax'
+  Plug 'neowit/vim-force.com'
+  Plug 'majutsushi/tagbar'
+  Plug 'isRuslan/vim-es6'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'tpope/vim-vinegar'
+  Plug 'chrisbra/colorizer'
+  Plug 'mattn/emmet-vim'
 
 call plug#end()
+
+let g:ale_pattern_options = {
+\   '.*\.cmp$': {'ale_enabled': 0},
+\   '.*\.evt$': {'ale_enabled': 0},
+\   '.*\.html$': {'ale_enabled': 0}
+\}
+let g:ale_linters = {
+      \ 'typescript': ['tslint'],
+      \}
+" let g:user_emmet_leader_key='<C-n>'
 let g:jedi#completions_enabled=1
+"
+" minimum chars to trigger autocompletion to speed up the insert mode
+let g:ycm_min_num_of_chars_for_completion=50
+"
 " Configure ALE linter
 let g:ale_lint_on_text_changed = 'never'
 let g:python_highlight_all = 1
@@ -269,23 +386,34 @@ set guioptions=
 set encoding=UTF-8
 filetype plugin indent on
 :set smartindent
+
 set guifont=:h
 
 set background=light
+
 colorscheme monokai
+highlight CursorLine ctermbg=238 cterm=bold
 
 let g:webdevicons_enable_nerdtree = 1
 let g:NERDTreeDirArrows=0
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = '📁'
-let g:DevIconsDefaultFolderCloseSymbol = '📁'
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = '🗂'
+let g:DevIconsDefaultFolderCloseSymbol = '🗂'
 let g:DevIconsDefaultFolderOpenSymbol = '📂'
 let g:NERDTreeDisablePatternMatchHighlight = 1
 " let g:NERDTreeSyntaxDisableDefaultExtensions = 1
 " let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
 " let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
-let g:NERDTreeSyntaxEnabledExtensions = ['py', 'jsx', 'js', 'scss',  'css', 'md']
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xml'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cmp'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['evt'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cls'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['svg'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['forceignore'] = ''
+
+let g:NERDTreeSyntaxEnabledExtensions = ['py', 'jsx', 'js', 'scss',  'css', 'md', 'xml', 'apexcode', 'cls', 'json', 'svg']
 let s:blue = "689FB6"
 let s:brown = "905532"
 let s:aqua =  "3AFFDB"
@@ -323,6 +451,10 @@ let g:NERDTreeExtensionHighlightColor['json'] = s:lightPurple
 let g:NERDTreeExtensionHighlightColor['md'] = s:mediumseagreen
 let g:NERDTreeExtensionHighlightColor['yml'] = s:blue
 let g:NERDTreeExtensionHighlightColor['yaml'] = s:blue
+let g:NERDTreeExtensionHighlightColor['cls'] = s:blue
+let g:NERDTreeExtensionHighlightColor['cmp'] = s:blue
+let g:NERDTreeExtensionHighlightColor['evt'] = s:red
+let g:NERDTreeExtensionHighlightColor['svg'] = s:aqua
 let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreePatternMatchHighlightColor['.+\.html\*?$'] = s:darkOrange
 let g:NERDTreePatternMatchHighlightColor['^Dockerfile.*'] = s:blue
@@ -330,6 +462,7 @@ let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange
 let g:NERDTreeExactMatchHighlightColor['.vimrc'] = s:lawngreen
 let g:NERDTreeExactMatchHighlightColor['.gitignore*'] = s:git_orange
+let g:NERDTreeExactMatchHighlightColor['.forceignore*'] = s:aqua
 let g:NERDTreeExactMatchHighlightColor['Dockerfile'] = s:blue
 "
 " let g:syntastic_always_populate_loc_list = 1
@@ -360,5 +493,8 @@ let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
 let g:vim_markdown_fenced_languages = ['javascript=js', 'python=py', 'html=html', 'css=css']
 let g:vim_markdown_folding_level = 2
 
-
-
+" force.com
+let g:apex_backup_folder="/Users/johnmutuma/Documents/force-workspace/backup/"
+let g:apex_temp_folder="/tmp/apex/gvim-deployment"
+let g:apex_tooling_force_dot_com_path="/Users/johnmutuma/Documents/force-workspace/tooling-force.com-0.4.4.0.jar"
+let g:apex_properties_folder="/Users/johnmutuma/Documents/force-workspace/properties/"
