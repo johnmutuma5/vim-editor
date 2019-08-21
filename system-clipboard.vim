@@ -1,7 +1,9 @@
-noremap <leader>scy :set operatorfunc=<SID>SysClipboardYank<CR>g@
-noremap <leader>scp :call <SID>SysClipboardPaste()<CR>
-noremap <leader>scP :call <SID>SysClipboardPasteUp()<CR>
-noremap <leader>scs :call <SID>SysClipboardSearch()<CR>
+" set this as a symbolic link in .vim/plugin
+"
+nnoremap <leader>scy :set operatorfunc=<SID>SysClipboardYank<CR>g@
+nnoremap <leader>scp :call <SID>SysClipboardPaste()<CR>
+nnoremap <leader>scP :call <SID>SysClipboardPasteUp()<CR>
+nnoremap <leader>scs :call <SID>SysClipboardSearch()<CR>
 
 "
 "
