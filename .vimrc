@@ -28,9 +28,9 @@ execute pathogen#infect()
 "
 " Mappings
 " put up - move a line up
-:noremap <leader>mu yymakPmz`add`z
+:noremap <leader>mk yymakPmz`add`z
 " put down - move a line down
-:noremap <leader>md ddp
+:noremap <leader>mj ddp
 " cut line - cut a line
 :noremap <leader>xl dd
 " copy line - copy a line
@@ -67,6 +67,19 @@ execute pathogen#infect()
 :nnoremap k gk
 "
 "
+"
+" File versions traversal - use 0Glog to create a quick list of file versions
+" and  use the mappings below to traverse the file versions
+" a commit older
+:nnoremap ]v :cn<CR>
+" oldest commit
+:nnoremap ]]v :clast<CR>
+
+" a commit newer
+:nnoremap [v :cp<CR>
+" latest commmit
+:nnoremap [[v :cfirst<CR>
+
 " use Ctrl + j to move windows
 :nnoremap <c-j> <c-w>j
 :nnoremap <c-l> <c-w>l
@@ -292,7 +305,6 @@ function! s:TransferBufferToNewTab()
   execute winnr() . 'wincmd q' 
   " open the filename in new tab
   execute "tab split " . cur_filename 
-  NERDTree
   execute "wincmd p"
   " go to cursor position
   execute "normal! " . cur_line . "G"
@@ -354,6 +366,7 @@ call plug#begin()
   Plug 'tpope/vim-vinegar'
   Plug 'chrisbra/colorizer'
   Plug 'mattn/emmet-vim'
+  Plug 'rakr/vim-one'
 
 call plug#end()
 
