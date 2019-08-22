@@ -1,3 +1,5 @@
+" set this as a symbolic link in .vim/plugin
+
 fun! s:SetCustomJavaScriptSyntaxHighlights()
   syntax match jsDot                        /\v\./ 
   " syntax match jsOperators                  /\v[^+-/*][+-/*][^+-/*]/ 

@@ -28,19 +28,19 @@ execute pathogen#infect()
 "
 " Mappings
 " put up - move a line up
-:noremap <leader>mk yymakPmz`add`z
+:nnoremap <leader>mk yymakPmz`add`z
 " put down - move a line down
-:noremap <leader>mj ddp
+:nnoremap <leader>mj ddp
 " cut line - cut a line
-:noremap <leader>xl dd
+:nnoremap <leader>xl dd
 " copy line - copy a line
-:noremap <leader>cl yy
+:nnoremap <leader>cl yy
 " Ctrl + n - Open nerdTree
-:noremap <C-n> :NERDTree ~/Documents/Projects<cr>
+:nnoremap <C-n> :NERDTree ~/Documents/Projects<cr>
 " Open vimrc in a vertical split
-:noremap <leader>ov :vsplit $MYVIMRC<cr>
+:nnoremap <leader>ov :vsplit $MYVIMRC<cr>
 " Source vimrc
-:noremap <leader>sv :source $MYVIMRC<cr>
+:nnoremap <leader>sv :source $MYVIMRC<cr>
 " Uppercase current word insert mode
 :inoremap <c-u> <esc>magUiw`aa
 " Open file in vertical split with under cursor name in same dir as current file
