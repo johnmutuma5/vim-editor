@@ -8,6 +8,11 @@
 :set foldmethod=syntax
 :set foldlevel=15
 :set wildignore=*/**/node_modules/*
+"
+"
+" always show statusline
+:set laststatus=2
+:set nowrap " don't wrap 
 " when indenting with '>', use 2 spaces width
 set shiftwidth=2
 " On pressing tab, insert 2 spaces
@@ -17,11 +22,35 @@ set incsearch
 set ignorecase
 set smartcase
 
+" cursoline bold
+:hi CursorLine cterm=bold
+
+" 
+" Toggle day and night {{{
+:nnoremap <ESC><ESC><ESC> :call <SID>toggleDayNight()<CR>
+:let g:is_day = 0
+
+function s:toggleDayNight()
+  if g:is_day == 1 " it is day
+    colorscheme flattened_light  
+    set background=light
+    let g:is_day = 0
+  elseif g:is_day == 0 " it's night
+    colorscheme monokai  
+    set background=dark
+    let g:is_day = 1
+  endif
+
+  hi CursorLine cterm=bold
+endfunction
+"}}}
+
+
+
 let NERDTreeShowHidden=1
 
 :let mapleader=","
 :let localleader=",,"
-
 " Initiate Pathogen
 execute pathogen#infect() 
 "
@@ -37,8 +66,9 @@ execute pathogen#infect()
 :nnoremap <leader>cl yy
 " Ctrl + n - Open nerdTree
 :nnoremap <C-n> :NERDTree ~/Documents/Projects<cr>
+:nnoremap <C-n>f :NERDTreeFind<cr>:call<SID>TransferBufferToNewTab()<CR>
 " Open vimrc in a vertical split
-:nnoremap <leader>ov :vsplit $MYVIMRC<cr>
+:nnoremap <leader>ov :tabedit $MYVIMRC<cr>
 " Source vimrc
 :nnoremap <leader>sv :source $MYVIMRC<cr>
 " Uppercase current word insert mode
@@ -58,7 +88,8 @@ execute pathogen#infect()
 " go into normal mode quickly
 :inoremap jk <esc>
 " add space and remain in normal mode
-:nnoremap <CR> :nohlsearch<CR>:<CR>
+" highlight search off
+:nnoremap <leader>hso :nohlsearch<CR>:<CR>
 " " use very magic when searching
 " :nnoremap / /\v
 " :nnoremap ? ?\v
@@ -81,12 +112,14 @@ execute pathogen#infect()
 :nnoremap [[v :cfirst<CR>
 
 " use Ctrl + j to move windows
-:nnoremap <c-j> <c-w>j
-:nnoremap <c-l> <c-w>l
-:nnoremap <c-h> <c-w>h
-:nnoremap <c-k> <c-w>k
-:nnoremap <c-c> <c-w>c
+:nnoremap <c-h> ^ 
+:nnoremap <c-l> $ 
 " 
+" :nnoremap <c-l> <c-w>l
+" :nnoremap <c-c> <c-w>c
+" :nnoremap <c-k> <c-w>k
+" :nnoremap <c-h> <c-w>h
+" :nnoremap <c-l> <c-w>l
 "
 " auto close { braces into block mode
 :inoremap {<cr> {<cr>}<esc>O
@@ -116,21 +149,37 @@ execute pathogen#infect()
 " auto close self closing tags e.g. <img /> inline mode
 :inoremap <cc <<space>/><left><left><left>
 " move right with ctrl-l in insert mode
-:inoremap <C-l> <right>
+" use terminal escape sequences
+:inoremap <ESC>f <right>
+" following escape sequence useful when iterm is mapped for Alt+l to move cursor right a char
+:inoremap <ESC>[C <right> 
 " move left with ctrl-h in insert mode
-:inoremap <C-h> <left>
+:inoremap <ESC>b <left>
+" following escape sequence useful when iterm is mapped for Alt+l to move cursor left a char
+:inoremap <ESC>[D <left>
 " move up with ctrl-k in insert mode
-:inoremap <C-k> <up>
+:inoremap ˚ <up>
 " move down with ctrl-j in insert mode
-:inoremap <C-j> <down>
-:nnoremap <left> :<CR>
-:nnoremap <up> :<CR>
-:nnoremap <right> :<CR>
-:nnoremap <down> :<CR>
-:inoremap <left> <ESC>a
-:inoremap <up> <Esc>a
-:inoremap <right> <Esc>a
-:inoremap <down> <Esc>a
+:inoremap ∆ <down>
+
+" insert mode backspace with Ctrl+H
+:inoremap <C-h> <left><delete>
+" insert mode delete character under cursor with Ctrl+x
+:inoremap <C-x> <delete>
+" insert mode delete next character
+:inoremap <C-l> <right><delete><left>
+
+" disable arrow keys 
+" :nnoremap <left> :<CR>
+" :nnoremap <up> :<CR>
+" :nnoremap <right> :<CR>
+" :nnoremap <down> :<CR>
+" :inoremap <left> <ESC>a
+" :inoremap <up> <Esc>a
+" :inoremap <right> <Esc>a
+" :inoremap <down> <Esc>a
+
+" higlight colors
 :nnoremap <leader>hco :ColorHighlight<CR> 
 :nnoremap <leader>hcc :ColorClear<CR>
 "
@@ -281,6 +330,13 @@ augroup filetype_py
   :autocmd FileType python*,html*,xml* :setlocal shiftwidth=4 tabstop=4 
 augroup END
 " End Python FileType Auto commands}}}
+"
+" apexcode FileType Auto commands{{{
+augroup filetype_apexcode
+  :autocmd!
+  :autocmd FileType apexcode* :setlocal shiftwidth=2 tabstop=2 
+augroup END
+" End apex FileType Auto commands}}}
 
 " Jupyter Notebooks Auto commands{{{
 augroup jupyter_notebooks
@@ -347,11 +403,11 @@ call plug#begin()
   Plug 'ryanoasis/vim-devicons'
   Plug 'vim-utils/vim-line'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-abolish'
   Plug 'itchyny/lightline.vim'
   Plug 'iamcco/mathjax-support-for-mkdp'
   Plug 'iamcco/markdown-preview.vim'
   Plug 'plasticboy/vim-markdown'
-  Plug 'lifepillar/vim-solarized8'
   Plug 'ekalinin/dockerfile.vim'
   Plug 'leafgarland/typescript-vim'
   Plug 'davidhalter/jedi-vim'
@@ -367,6 +423,9 @@ call plug#begin()
   Plug 'chrisbra/colorizer'
   Plug 'mattn/emmet-vim'
   Plug 'rakr/vim-one'
+  Plug 'romainl/flattened'
+  Plug 'NLKNguyen/papercolor-theme'
+  Plug 'godlygeek/tabular'
 
 call plug#end()
 
@@ -391,7 +450,8 @@ let g:python_highlight_all = 1
 " let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{FugitiveStatusline()}
 
 :set colorcolumn=80
 set encoding=utf-8
@@ -402,10 +462,6 @@ filetype plugin indent on
 
 set guifont=:h
 
-set background=light
-
-colorscheme monokai
-highlight CursorLine ctermbg=238 cterm=bold
 
 let g:webdevicons_enable_nerdtree = 1
 let g:NERDTreeDirArrows=0
