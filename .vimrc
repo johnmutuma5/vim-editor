@@ -29,7 +29,6 @@ set smartcase
 " Toggle day and night {{{
 :nnoremap <ESC><ESC><ESC> :call <SID>toggleDayNight()<CR>
 :let g:is_day = 0
-
 function s:toggleDayNight()
   if g:is_day == 1 " it is day
     colorscheme flattened_light  
@@ -43,6 +42,8 @@ function s:toggleDayNight()
 
   hi CursorLine cterm=bold
 endfunction
+
+:call <SID>toggleDayNight()
 "}}}
 
 
