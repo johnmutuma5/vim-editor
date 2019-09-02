@@ -26,26 +26,6 @@ set smartcase
 :hi CursorLine cterm=bold
 
 " 
-" Toggle day and night {{{
-:nnoremap <ESC><ESC><ESC> :call <SID>toggleDayNight()<CR>
-:let g:is_day = 0
-function s:toggleDayNight()
-  if g:is_day == 1 " it is day
-    colorscheme flattened_light  
-    set background=light
-    let g:is_day = 0
-  elseif g:is_day == 0 " it's night
-    colorscheme monokai  
-    set background=dark
-    let g:is_day = 1
-  endif
-
-  hi CursorLine cterm=bold
-endfunction
-
-:call <SID>toggleDayNight()
-"}}}
-
 
 
 let NERDTreeShowHidden=1
@@ -225,6 +205,13 @@ augroup filetype_vim
 augroup END
 " }}}
 
+" vim folding {{{
+augroup filetype_markdown
+  autocmd!
+  autocmd FileType markdown setlocal wrap linebreak
+augroup END
+" }}}
+"
 " Toggling things and options {{{
 
 " ToggleRelativeNum <leader>trn {{{
