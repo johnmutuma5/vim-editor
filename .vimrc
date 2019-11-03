@@ -19,7 +19,7 @@ set shiftwidth=2
 set expandtab
 set hlsearch
 set incsearch
-set ignorecase
+" set ignorecase
 set smartcase
 
 " cursoline bold
@@ -46,7 +46,12 @@ execute pathogen#infect()
 " copy line - copy a line
 :nnoremap <leader>cl yy
 " Ctrl + n - Open nerdTree
-:nnoremap <C-n> :NERDTree ~/Documents/Projects<cr>
+
+function! s:OpenNerdTree()
+  :execute ':NERDTree %'
+endfunction
+" :nnoremap <C-n> :NERDTree getcwd()<cr>
+:nnoremap <C-n> :call<SID>OpenNerdTree()<cr>
 :nnoremap <C-n>f :NERDTreeFind<cr>:call<SID>TransferBufferToNewTab()<CR>
 " Open vimrc in a vertical split
 :nnoremap <leader>ov :tabedit $MYVIMRC<cr>
@@ -70,7 +75,7 @@ execute pathogen#infect()
 :inoremap jk <esc>
 " add space and remain in normal mode
 " highlight search off
-:nnoremap <leader>hso :nohlsearch<CR>:<CR>
+:nnoremap <leader><CR> :nohlsearch<CR>:<CR>
 " " use very magic when searching
 " :nnoremap / /\v
 " :nnoremap ? ?\v
@@ -286,7 +291,7 @@ augroup END
 augroup set_filetype
   :autocmd!
   " Open Nerd tree in Projects folder
-  :autocmd BufEnter *.cmp,*.evt :set filetype=html
+  :autocmd BufEnter *.cmp,*.evt,*.design :set filetype=xhtml " Salesforce files
   :autocmd BufEnter *.js :set filetype=typescript
   " :autocmd TabEnter * :NERDTree Documents/Projects/ 
 augroup END
@@ -414,6 +419,7 @@ call plug#begin()
   Plug 'romainl/flattened'
   Plug 'NLKNguyen/papercolor-theme'
   Plug 'godlygeek/tabular'
+  Plug 'gregsexton/MatchTag'
 
 call plug#end()
 
@@ -435,13 +441,13 @@ let g:ycm_min_num_of_chars_for_completion=50
 let g:ale_lint_on_text_changed = 'never'
 let g:python_highlight_all = 1
 " ignore some html5 errors
-" let syntastic_mode_map = { 'passive_filetypes': ['html'] }
+let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 
 set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%{FugitiveStatusline()}
 
-:set colorcolumn=80
+:set colorcolumn=100
 set encoding=utf-8
 set guioptions=
 set encoding=UTF-8
