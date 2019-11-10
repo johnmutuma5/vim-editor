@@ -24,7 +24,6 @@ set smartcase
 
 " cursoline bold
 :hi CursorLine cterm=bold
-
 " 
 
 
@@ -39,6 +38,11 @@ execute pathogen#infect()
 " Mappings
 " put up - move a line up
 :nnoremap <leader>mk yymakPmz`add`z
+" Substitute in file
+:nnoremap <leader>s :%s///g<left><left>
+:nnoremap <leader>sc :%s///gc<left><left><left>
+:nnoremap <leader>ar :args */**/*.
+:nnoremap <leader>vg :vimg '' ##<left><left><left><left>
 " put down - move a line down
 :nnoremap <leader>mj ddp
 " cut line - cut a line
@@ -293,6 +297,7 @@ augroup set_filetype
   " Open Nerd tree in Projects folder
   :autocmd BufEnter *.cmp,*.evt,*.design :set filetype=xhtml " Salesforce files
   :autocmd BufEnter *.js :set filetype=typescript
+  :autocmd BufEnter *.tsx :set filetype=typescript
   " :autocmd TabEnter * :NERDTree Documents/Projects/ 
 augroup END
 " End BufEnter Auto commands }}}
@@ -386,6 +391,8 @@ call plug#begin()
 	Plug 'flazz/vim-colorschemes'
 	Plug 'crusoexia/vim-monokai'
 	Plug 'pangloss/vim-javascript'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'maxmellon/vim-jsx-pretty'
 	Plug 'crusoexia/vim-javascript-lib'
 	Plug 'mxw/vim-jsx'
   Plug 'w0rp/ale'
@@ -402,7 +409,6 @@ call plug#begin()
   Plug 'iamcco/markdown-preview.vim'
   Plug 'plasticboy/vim-markdown'
   Plug 'ekalinin/dockerfile.vim'
-  Plug 'leafgarland/typescript-vim'
   Plug 'davidhalter/jedi-vim'
   Plug 'vim-python/python-syntax'
   Plug 'szymonmaszke/vimpyter'
@@ -420,6 +426,7 @@ call plug#begin()
   Plug 'NLKNguyen/papercolor-theme'
   Plug 'godlygeek/tabular'
   Plug 'gregsexton/MatchTag'
+  Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
 
@@ -443,9 +450,9 @@ let g:python_highlight_all = 1
 " ignore some html5 errors
 let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%{FugitiveStatusline()}
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{FugitiveStatusline()}
 
 :set colorcolumn=100
 set encoding=utf-8
@@ -476,7 +483,7 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cls'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['svg'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['forceignore'] = ''
 
-let g:NERDTreeSyntaxEnabledExtensions = ['py', 'jsx', 'js', 'scss',  'css', 'md', 'xml', 'apexcode', 'cls', 'json', 'svg']
+let g:NERDTreeSyntaxEnabledExtensions = ['py', 'jsx', 'tsx', 'js', 'scss',  'css', 'md', 'xml', 'apexcode', 'cls', 'json', 'svg']
 let s:blue = "689FB6"
 let s:brown = "905532"
 let s:aqua =  "3AFFDB"
@@ -510,6 +517,7 @@ let g:NERDTreeExtensionHighlightColor['py'] = s:blue
 let g:NERDTreeExtensionHighlightColor['scss'] = s:salmon
 let g:NERDTreeExtensionHighlightColor['css'] = s:deepskyblue
 let g:NERDTreeExtensionHighlightColor['jsx'] = s:aqua
+let g:NERDTreeExtensionHighlightColor['tsx'] = s:aqua
 let g:NERDTreeExtensionHighlightColor['json'] = s:lightPurple
 let g:NERDTreeExtensionHighlightColor['md'] = s:mediumseagreen
 let g:NERDTreeExtensionHighlightColor['yml'] = s:blue
@@ -528,13 +536,7 @@ let g:NERDTreeExactMatchHighlightColor['.gitignore*'] = s:git_orange
 let g:NERDTreeExactMatchHighlightColor['.forceignore*'] = s:aqua
 let g:NERDTreeExactMatchHighlightColor['Dockerfile'] = s:blue
 "
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 1
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
-" let g:syntastic_mode_map = { 'passive_filetypes': ['html'] }
+"
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
@@ -548,8 +550,13 @@ let g:lightline = {
 
 let g:lightline.tabline = {
   \   'left': [ ['tabs'] ],
+  \   'right': [],
   \ }
 set showtabline=2  " Show tabline
+" let s:palette = g:lightline#colorscheme#wombat#palette
+" let s:palette.tabline.tabsel = [ [ s:aqua, s:blue, 252, 90, 'bold' ] ]
+" unlet s:palette
+
 set guioptions-=e  " Don't use GUI tabline
 
 let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
