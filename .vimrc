@@ -42,15 +42,13 @@ execute pathogen#infect()
 :nnoremap <leader>s :%s///g<left><left>
 :nnoremap <leader>sc :%s///gc<left><left><left>
 :nnoremap <leader>ar :args */**/*.
-:nnoremap <leader>vg :vimg '' ##<left><left><left><left>
+:nnoremap <leader>vg :vimg //g ##<left><left><left><left><left>
 " put down - move a line down
 :nnoremap <leader>mj ddp
 " cut line - cut a line
 :nnoremap <leader>xl dd
-" copy line - copy a line
-:nnoremap <leader>cl yy
+"
 " Ctrl + n - Open nerdTree
-
 function! s:OpenNerdTree()
   :execute ':NERDTree %'
 endfunction
@@ -69,12 +67,6 @@ endfunction
 " :noremap H ^
 " go to the last character of the current line
 " :noremap L $
-" go to top of file - the native H which has been consumed by start of line
-:noremap <leader>ct :normal! H<CR>
-" go to bottom of file - the native H which has been consumed by start of line
-:noremap <leader>cb :normal! L<CR>
-" go to middle of file - the native M
-:noremap <leader>cc :normal! M<CR>
 " go into normal mode quickly
 :inoremap jk <esc>
 " add space and remain in normal mode
@@ -427,8 +419,29 @@ call plug#begin()
   Plug 'godlygeek/tabular'
   Plug 'gregsexton/MatchTag'
   Plug 'ludovicchabant/vim-gutentags'
+  Plug '/usr/local/opt/fzf'
+  Plug 'junegunn/fzf.vim'
 
 call plug#end()
+
+
+" FZF.vim now supports this command out of the box
+:nnoremap <C-r><C-g> :Rg -g '*.*'<space> ''<left>
+:nnoremap <C-f>f :FZF<CR>
+:nnoremap <C-f>b :Buffers<CR>
+" so this code is no longer needed.
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
+  \   <bang>0)
+
+" command! -bang -nargs=* Ag
+"   \ call fzf#vim#ag(<q-args>,
+"   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+"   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+"   \                 <bang>0)
 
 let g:ale_pattern_options = {
 \   '.*\.cmp$': {'ale_enabled': 0},
@@ -442,7 +455,7 @@ let g:ale_linters = {
 let g:jedi#completions_enabled=1
 "
 " minimum chars to trigger autocompletion to speed up the insert mode
-let g:ycm_min_num_of_chars_for_completion=50
+let g:ycm_min_num_of_chars_for_completion=70
 "
 " Configure ALE linter
 let g:ale_lint_on_text_changed = 'never'
