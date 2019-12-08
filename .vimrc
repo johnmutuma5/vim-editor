@@ -184,6 +184,8 @@ endfunction
 :nnoremap <leader>ts :vimgrep /\v\s+$/ %<CR>:copen<CR>
 " remove highlight trailing white space
 :nnoremap <leader>W :match none<CR>
+:nnoremap <leader>I :PlugInstall<CR>
+:nnoremap <leader>U :PlugUpdate<CR>
 "
 " grep the word under the cursor
 " :nnoremap <leader>g :execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<CR>:copen<CR>
@@ -384,6 +386,7 @@ call plug#begin()
 	Plug 'crusoexia/vim-monokai'
 	Plug 'pangloss/vim-javascript'
   Plug 'leafgarland/typescript-vim'
+  Plug 'HerringtonDarkholme/yats.vim'
   Plug 'maxmellon/vim-jsx-pretty'
 	Plug 'crusoexia/vim-javascript-lib'
 	Plug 'mxw/vim-jsx'
@@ -421,12 +424,13 @@ call plug#begin()
   Plug 'ludovicchabant/vim-gutentags'
   Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
+  Plug 'tpope/vim-obsession'
 
 call plug#end()
 
 
 " FZF.vim now supports this command out of the box
-:nnoremap <C-r><C-g> :Rg -g '*.*'<space> ''<left>
+:nnoremap <C-f>g :Rg -g '*.*'<space> ''<left>
 :nnoremap <C-f>f :FZF<CR>
 :nnoremap <C-f>b :Buffers<CR>
 " so this code is no longer needed.
