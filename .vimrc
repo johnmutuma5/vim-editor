@@ -39,8 +39,8 @@ execute pathogen#infect()
 " put up - move a line up
 :nnoremap <leader>mk yymakPmz`add`z
 " Substitute in file
-:nnoremap <leader>s :%s///g<left><left>
-:nnoremap <leader>sc :%s///gc<left><left><left>
+:nnoremap <leader>s :%s///g<left><left><left>
+:nnoremap <leader>sc :%s///gc<left><left><left><left>
 :nnoremap <leader>ar :args */**/*.
 :nnoremap <leader>vg :vimg //g ##<left><left><left><left><left>
 " put down - move a line down
@@ -79,6 +79,8 @@ endfunction
 :nnoremap j gj
 :nnoremap k gk
 "
+" closing windows fugitive style
+:nnoremap gq <C-W>c
 "
 "
 " File versions traversal - use 0Glog to create a quick list of file versions
@@ -390,7 +392,7 @@ call plug#begin()
   Plug 'maxmellon/vim-jsx-pretty'
 	Plug 'crusoexia/vim-javascript-lib'
 	Plug 'mxw/vim-jsx'
-  Plug 'w0rp/ale'
+  Plug 'dense-analysis/ale'
   Plug 'tomasr/molokai'
 	Plug 'tpope/vim-surround'
   Plug 'valloric/youcompleteme'
