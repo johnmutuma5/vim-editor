@@ -50,11 +50,11 @@ execute pathogen#infect()
 "
 " Ctrl + n - Open nerdTree
 function! s:OpenNerdTree()
-  :execute ':NERDTree %'
+  :execute ':NERDTreeToggle %'
 endfunction
 " :nnoremap <C-n> :NERDTree getcwd()<cr>
 :nnoremap <C-n> :call<SID>OpenNerdTree()<cr>
-:nnoremap <C-n>f :NERDTreeFind<cr>:call<SID>TransferBufferToNewTab()<CR>
+" :nnoremap <C-n>f :NERDTreeFind<cr>:call<SID>TransferBufferToNewTab()<CR>
 " Open vimrc in a vertical split
 :nnoremap <leader>ov :tabedit $MYVIMRC<cr>
 " Source vimrc
@@ -79,6 +79,8 @@ endfunction
 :nnoremap j gj
 :nnoremap k gk
 "
+" set current tab as only
+:noremap <C-T>o :tabonly<CR>
 " closing windows fugitive style
 :nnoremap gq <C-W>c
 "
@@ -106,32 +108,32 @@ endfunction
 " :nnoremap <c-l> <c-w>l
 "
 " auto close { braces into block mode
-:inoremap {<cr> {<cr>}<esc>O
+" :inoremap {<cr> {<cr>}<esc>O
 " auto close [ brackets into block mode
-:inoremap [<cr> [<cr>]<esc>O
+" :inoremap [<cr> [<cr>]<esc>O
 " auto close ( brackets into block mode
-:inoremap (<cr> (<cr>)<esc>O
+" :inoremap (<cr> (<cr>)<esc>O
 "
 " cbange inside []
 " :inoremap cir ci[
 "
 " auto close ( inline mode
-:inoremap (cc ()<left>
+" :inoremap (cc ()<left>
 " auto close ( inline mode and add sorrounding spaces
-:inoremap (cs (<space><space>)<left><left>
+" :inoremap (cs (<space><space>)<left><left>
 "
 " auto close { inline mode
-:inoremap {cc {}<left>
+" :inoremap {cc {}<left>
 " auto close { inline mode and add sorrounding spaces
-:inoremap {cs {<space><space>}<left><left>
+" :inoremap {cs {<space><space>}<left><left>
 "
 "
 " auto close [ inline mode
-:inoremap [cc []<left>
+" :inoremap [cc []<left>
 " auto close [ inline mode and add sorrounding spaces
-:inoremap [cs [<space><space>]<left><left>
+" :inoremap [cs [<space><space>]<left><left>
 " auto close self closing tags e.g. <img /> inline mode
-:inoremap <cc <<space>/><left><left><left>
+" :inoremap <cc <<space>/><left><left><left>
 " move right with ctrl-l in insert mode
 " use terminal escape sequences
 :inoremap <ESC>f <right>
@@ -141,10 +143,14 @@ endfunction
 :inoremap <ESC>b <left>
 " following escape sequence useful when iterm is mapped for Alt+l to move cursor left a char
 :inoremap <ESC>[D <left>
-" move up with ctrl-k in insert mode
-:inoremap ˚ <up>
-" move down with ctrl-j in insert mode
-:inoremap ∆ <down>
+" move up with ctrl-p in insert mode
+:inoremap <C-k> <up>
+" move down with ctrl-n in insert mode
+:inoremap <C-j> <down>
+" move up with ctrl-b in insert mode
+:inoremap <C-b> <left>
+" move up with ctrl-f in insert mode
+:inoremap <C-f> <right>
 
 " insert mode backspace with Ctrl+H
 :inoremap <C-h> <left><delete>
@@ -168,11 +174,11 @@ endfunction
 :nnoremap <leader>hcc :ColorClear<CR>
 "
 " auto close " inline mode
-:inoremap "cc ""<left>
+" :inoremap "cc ""<left>
 " auto close ' inline mode
-:inoremap 'cc ''<left>
+" :inoremap 'cc ''<left>
 " auto close ` inline mode
-:inoremap `cc ``<left>
+" :inoremap `cc ``<left>
 " 
 " CtrlP
 :nnoremap <C-p>f :CtrlP<cr>
@@ -188,6 +194,7 @@ endfunction
 :nnoremap <leader>W :match none<CR>
 :nnoremap <leader>I :PlugInstall<CR>
 :nnoremap <leader>U :PlugUpdate<CR>
+:nnoremap <leader>C :PlugClean<CR>
 "
 " grep the word under the cursor
 " :nnoremap <leader>g :execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<CR>:copen<CR>
@@ -292,8 +299,8 @@ augroup set_filetype
   :autocmd!
   " Open Nerd tree in Projects folder
   :autocmd BufEnter *.cmp,*.evt,*.design :set filetype=xhtml " Salesforce files
-  :autocmd BufEnter *.js :set filetype=typescript
-  :autocmd BufEnter *.tsx :set filetype=typescript
+  :autocmd BufEnter *.tsx :set filetype=typescript.tsx
+  :autocmd BufEnter *.jsx :set filetype=javascript.jsx
   " :autocmd TabEnter * :NERDTree Documents/Projects/ 
 augroup END
 " End BufEnter Auto commands }}}
@@ -315,6 +322,8 @@ augroup filetype_js_ts
   :autocmd FileType javascript*,typescript* :iabbrev <buffer> fn function
   " change current func name
   :autocmd FileType javascript*,typescript* :onoremap fn :<c-u>execute "normal! ?function\r:nohlsearch\rwviw"<CR>
+  " vim commenter syntax for typescript
+  :autocmd FileType typescript* setlocal commentstring=//\ %s
 augroup END
 " End JavaScript and TypeScript Auto commands }}}
 
@@ -386,19 +395,14 @@ call plug#begin()
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 	Plug 'flazz/vim-colorschemes'
 	Plug 'crusoexia/vim-monokai'
-	Plug 'pangloss/vim-javascript'
-  Plug 'leafgarland/typescript-vim'
-  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'sheerun/vim-polyglot' " on demandsyntax, indent, ftplugin etc
+  Plug 'vim-scripts/SyntaxComplete'
   Plug 'maxmellon/vim-jsx-pretty'
 	Plug 'crusoexia/vim-javascript-lib'
-	Plug 'mxw/vim-jsx'
-  Plug 'dense-analysis/ale'
   Plug 'tomasr/molokai'
 	Plug 'tpope/vim-surround'
-  Plug 'valloric/youcompleteme'
   Plug 'tpope/vim-commentary'
   Plug 'ryanoasis/vim-devicons'
-  Plug 'vim-utils/vim-line'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-abolish'
   Plug 'itchyny/lightline.vim'
@@ -407,10 +411,7 @@ call plug#begin()
   Plug 'plasticboy/vim-markdown'
   Plug 'ekalinin/dockerfile.vim'
   Plug 'davidhalter/jedi-vim'
-  Plug 'vim-python/python-syntax'
   Plug 'szymonmaszke/vimpyter'
-  Plug 'cakebaker/scss-syntax.vim'
-  Plug 'hail2u/vim-css3-syntax'
   Plug 'neowit/vim-force.com'
   Plug 'majutsushi/tagbar'
   Plug 'isRuslan/vim-es6'
@@ -420,13 +421,15 @@ call plug#begin()
   Plug 'mattn/emmet-vim'
   Plug 'rakr/vim-one'
   Plug 'romainl/flattened'
-  Plug 'NLKNguyen/papercolor-theme'
   Plug 'godlygeek/tabular'
   Plug 'gregsexton/MatchTag'
   Plug 'ludovicchabant/vim-gutentags'
-  Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'tpope/vim-obsession'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'antoinemadec/coc-fzf'
+  Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
@@ -443,37 +446,52 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
   \   <bang>0)
 
-" command! -bang -nargs=* Ag
-"   \ call fzf#vim#ag(<q-args>,
-"   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-"   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-"   \                 <bang>0)
+" coc.nvim config start
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+" if hidden is not set, TextEdit might fail.
+set hidden
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+" Better display for messages
+set cmdheight=2
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
 
-let g:ale_pattern_options = {
-\   '.*\.cmp$': {'ale_enabled': 0},
-\   '.*\.evt$': {'ale_enabled': 0},
-\   '.*\.html$': {'ale_enabled': 0}
-\}
-let g:ale_linters = {
-      \ 'typescript': ['tslint'],
-      \}
-" let g:user_emmet_leader_key='<C-n>'
-let g:jedi#completions_enabled=1
-"
-" minimum chars to trigger autocompletion to speed up the insert mode
-let g:ycm_min_num_of_chars_for_completion=70
-"
-" Configure ALE linter
-let g:ale_lint_on_text_changed = 'never'
-let g:python_highlight_all = 1
-" ignore some html5 errors
-let syntastic_mode_map = { 'passive_filetypes': ['html'] }
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+" always show signcolumns
+set signcolumn=yes
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" nnoremap <silent> <space>c  :<C-u>CocFzfListCommands<cr>
+nnoremap <silent> <space>a  :<C-u>CocFzfListDiagnostics<CR>
+nnoremap <silent> <space>e  :<C-u>CocFzfListExtensions<CR>
+nnoremap <silent> <space>l  :<C-u>CocFzfListLocation<CR>
+nnoremap <silent> <space>o  :<C-u>CocFzfListOutline<CR>
+nnoremap <silent> <space>p  :<C-u>CocFzfListResume<CR>
+nnoremap <silent> <space>s  :<C-u>CocFzfListSymbols<CR>
+nnoremap <silent> <space>S  :<C-u>CocFzfListServices<CR>
+" coc.nvim config end
 
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%{FugitiveStatusline()}
 
-:set colorcolumn=100
+
+
+
+
+
+
+
+set colorcolumn=100
 set encoding=utf-8
 set guioptions=
 set encoding=UTF-8
@@ -487,9 +505,9 @@ let g:webdevicons_enable_nerdtree = 1
 let g:NERDTreeDirArrows=0
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = '🗂'
-let g:DevIconsDefaultFolderCloseSymbol = '🗂'
-let g:DevIconsDefaultFolderOpenSymbol = '📂'
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = '🗂 '   
+let g:DevIconsDefaultFolderCloseSymbol = '🗂  '
+let g:DevIconsDefaultFolderOpenSymbol = '📂 '
 let g:NERDTreeDisablePatternMatchHighlight = 1
 " let g:NERDTreeSyntaxDisableDefaultExtensions = 1
 " let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
@@ -572,10 +590,6 @@ let g:lightline.tabline = {
   \   'right': [],
   \ }
 set showtabline=2  " Show tabline
-" let s:palette = g:lightline#colorscheme#wombat#palette
-" let s:palette.tabline.tabsel = [ [ s:aqua, s:blue, 252, 90, 'bold' ] ]
-" unlet s:palette
-
 set guioptions-=e  " Don't use GUI tabline
 
 let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
