@@ -1,9 +1,9 @@
 " set this as a symbolic link in .vim/plugin
 "
-nnoremap <leader>scy :set operatorfunc=<SID>SysClipboardYank<CR>g@
-nnoremap <leader>scp :call <SID>SysClipboardPaste()<CR>
-nnoremap <leader>scP :call <SID>SysClipboardPasteUp()<CR>
-nnoremap <leader>scs :call <SID>SysClipboardSearch()<CR>
+nnoremap <leader>cby :set operatorfunc=<SID>SysClipboardYank<CR>g@
+nnoremap <leader>cbp :call <SID>SysClipboardPaste()<CR>
+nnoremap <leader>cbP :call <SID>SysClipboardPasteUp()<CR>
+nnoremap <leader>cbs :call <SID>SysClipboardSearch()<CR>
 
 "
 "
