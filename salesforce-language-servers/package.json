@@ -1,0 +1,15 @@
+{
+  "name": "salesforce-language-servers",
+  "version": "1.0.0",
+  "description": "Aura, LWC and Apex Language servers for coc.nvim intergration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "John Mutuma",
+  "license": "ISC",
+  "dependencies": {
+    "@salesforce/aura-language-server": "^2.3.7",
+    "@salesforce/lwc-language-server": "^2.3.7"
+  }
+}
