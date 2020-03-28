@@ -4,7 +4,7 @@
       "command": "/Library/Java/JavaVirtualMachines/jdk-11.0.6.jdk/Contents/Home/bin/java",
       "args": [
         "-cp",
-        "/Users/johnmutuma/.config/nvim/apex-jorje-lsp.jar",
+        "/Users/johnmutuma/.config/nvim/salesforce-language-servers/apex-jorje-lsp.jar",
         "-Ddebug.internal.errors=true",
         /*"-Ddebug.semantic.errors=true",*/
         "apex.jorje.lsp.ApexLanguageServerLauncher"
@@ -15,7 +15,7 @@
       ]
     },
     "lwc": {
-      "module": "/Users/johnmutuma/.config/nvim/lwc-language-server.js",
+      "module": "/Users/johnmutuma/.config/nvim/salesforce-language-servers/node_modules/@salesforce/lwc-language-server/lib/server.js",
       "args": [
         "--node-ipc"
       ],
@@ -25,7 +25,7 @@
       ]
     },
     "aura": {
-      "module": "/Users/johnmutuma/.config/nvim/aura-language-server.js",
+      "module": "/Users/johnmutuma/.config/nvim/salesforce-language-servers/node_modules/@salesforce/aura-language-server/lib/server.js",
       "args": [
         "--node-ipc"
       ],
