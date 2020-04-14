@@ -10,7 +10,7 @@ ln -s $(pwd)/custom-syntax.vim ~/.vim/plugin/custom-syntax.vim
 ln -s $(pwd)/toggle-colorscheme.vim ~/.vim/plugin/toggle-colorsheme.vim
 ln -s $(pwd)/dragvisuals.vim ~/.vim/plugin/dragvisuals.vim
 
-ln -s $(pwd)/.bash_profile ~/.bash_profile
+# ln -s $(pwd)/.bash_profile ~/.bash_profile
 ln -s $(pwd)/.zshrc ~/.zshrc
 ln -s $(pwd)/.vimrc ~/.vimrc
 ln -s $(pwd)/.tmux.conf ~/.tmux.conf
