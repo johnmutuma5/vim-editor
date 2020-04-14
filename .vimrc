@@ -68,8 +68,10 @@ endfunction
 " go to the last character of the current line
 " :noremap L $
 " go into normal mode quickly
-" :inoremap jk <esc>  remove in favour of shift esc
-:inoremap <S-...><space> <esc>  
+:inoremap jk <esc>
+"
+" remove in favour of shift esc
+" :inoremap <S-...><space> <esc>  
 " the above may not be necessary when terminal app is configured to send ESC signal upon Shift-Space e.g. iterm
 
 " add space and remain in normal mode
@@ -340,7 +342,7 @@ augroup END
 " apexcode FileType Auto commands{{{
 augroup filetype_apexcode
   :autocmd!
-  :autocmd FileType apexcode* :setlocal shiftwidth=4 tabstop=4 foldmethod=indent
+  :autocmd FileType apexcode* :setlocal shiftwidth=4 tabstop=4 foldmethod=indent foldlevel=2
 augroup END
 " End apex FileType Auto commands}}}
 
