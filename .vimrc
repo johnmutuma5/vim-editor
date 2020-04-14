@@ -68,7 +68,10 @@ endfunction
 " go to the last character of the current line
 " :noremap L $
 " go into normal mode quickly
-:inoremap jk <esc>
+" :inoremap jk <esc>  remove in favour of shift esc
+:inoremap <S-...><space> <esc>  
+" the above may not be necessary when terminal app is configured to send ESC signal upon Shift-Space e.g. iterm
+
 " add space and remain in normal mode
 " highlight search off
 :nnoremap <leader><CR> :nohlsearch<CR>:<CR>
@@ -337,7 +340,7 @@ augroup END
 " apexcode FileType Auto commands{{{
 augroup filetype_apexcode
   :autocmd!
-  :autocmd FileType apexcode* :setlocal shiftwidth=2 tabstop=2 
+  :autocmd FileType apexcode* :setlocal shiftwidth=4 tabstop=4 foldmethod=indent
 augroup END
 " End apex FileType Auto commands}}}
 
@@ -430,8 +433,15 @@ call plug#begin()
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'antoinemadec/coc-fzf'
   Plug 'jiangmiao/auto-pairs'
-
+  Plug 'unblevable/quick-scope' " quick horizontal movements
+  " Plug 'pseewald/anyfold'
+  
 call plug#end()
+
+" unblevable/quick-scope 
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T', '/', '?']
+
+"
 
 
 " FZF.vim now supports this command out of the box
@@ -573,7 +583,8 @@ let g:NERDTreeExactMatchHighlightColor['.gitignore*'] = s:git_orange
 let g:NERDTreeExactMatchHighlightColor['.forceignore*'] = s:aqua
 let g:NERDTreeExactMatchHighlightColor['Dockerfile'] = s:blue
 "
-"
+" let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']"
+
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {

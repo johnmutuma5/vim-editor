@@ -1,6 +1,5 @@
 " Toggle day and night {{{
 :nnoremap <ESC><ESC><ESC> :call <SID>toggleDayNight()<CR>
-:nnoremap <leader><leader><leader> :call <SID>toggleDayNight()<CR>
 
 :let g:is_day = 0
 function s:toggleDayNight()
