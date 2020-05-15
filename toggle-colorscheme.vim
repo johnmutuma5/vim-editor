@@ -1,6 +1,13 @@
 " Toggle day and night {{{
 :nnoremap <ESC><ESC><ESC> :call <SID>toggleDayNight()<CR>
 
+
+augroup qs_colors
+  autocmd!
+  autocmd ColorScheme * highlight QuickScopePrimary guifg='#2cfbba' gui=underline ctermfg=136 cterm=underline
+  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#2aba5f' gui=underline ctermfg=165 cterm=underline
+augroup END
+
 :let g:is_day = 0
 function s:toggleDayNight()
   if g:is_day == 1 " it is day

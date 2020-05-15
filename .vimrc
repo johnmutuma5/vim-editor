@@ -6,7 +6,8 @@
 :set relativenumber " show existing tab with 2 spaces width
 :set tabstop=2
 :set foldmethod=syntax
-:set foldlevel=15
+:set foldlevel=0
+:set foldlevelstart=0
 :set wildignore=*/**/node_modules/*
 "
 "
@@ -63,13 +64,16 @@ endfunction
 :inoremap <c-u> <esc>magUiw`aa
 " Open file in vertical split with under cursor name in same dir as current file
 :nnoremap <leader>gf :vertical wincmd f<CR>
+" :nnoremap <leader>, , 
+" the mapping above will help avoid the delay with the default behaviour of ','  
+"
 " go to the first character of the current line
 " :noremap H ^
 " go to the last character of the current line
 " :noremap L $
 " go into normal mode quickly
 :inoremap jk <esc>
-"
+:"
 " remove in favour of shift esc
 " :inoremap <S-...><space> <esc>  
 " the above may not be necessary when terminal app is configured to send ESC signal upon Shift-Space e.g. iterm
@@ -148,9 +152,10 @@ endfunction
 :inoremap <ESC>b <left>
 " following escape sequence useful when iterm is mapped for Alt+l to move cursor left a char
 :inoremap <ESC>[D <left>
-" move up with ctrl-p in insert mode
+" move up with ctrl-k in insert mode. This will overwrite :digraphs command
+" which I rarely use
 :inoremap <C-k> <up>
-" move down with ctrl-n in insert mode
+" move down with ctrl-j in insert mode.
 :inoremap <C-j> <down>
 " move up with ctrl-b in insert mode
 :inoremap <C-b> <left>
@@ -342,7 +347,7 @@ augroup END
 " apexcode FileType Auto commands{{{
 augroup filetype_apexcode
   :autocmd!
-  :autocmd FileType apexcode* :setlocal shiftwidth=4 tabstop=4 foldmethod=indent foldlevel=2
+  :autocmd FileType apexcode* :setlocal shiftwidth=4 tabstop=4 foldmethod=indent foldlevel=0 foldlevelstart=0
 augroup END
 " End apex FileType Auto commands}}}
 
@@ -412,7 +417,7 @@ call plug#begin()
   Plug 'tpope/vim-abolish'
   Plug 'itchyny/lightline.vim'
   Plug 'iamcco/mathjax-support-for-mkdp'
-  Plug 'iamcco/markdown-preview.vim'
+  Plug 'iamcco/markdown-preview.nvim'
   Plug 'plasticboy/vim-markdown'
   Plug 'ekalinin/dockerfile.vim'
   Plug 'davidhalter/jedi-vim'
@@ -436,13 +441,17 @@ call plug#begin()
   Plug 'antoinemadec/coc-fzf'
   Plug 'jiangmiao/auto-pairs'
   Plug 'unblevable/quick-scope' " quick horizontal movements
+  " Plug 'nelstrom/vim-markdown-preview'
+  
+  " Plug 'justinmk/vim-sneak' " sneak to a match
   " Plug 'pseewald/anyfold'
   
 call plug#end()
 
 " unblevable/quick-scope 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T', '/', '?']
-
+let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_browser='Google Chrome'
 "
 
 
@@ -503,7 +512,7 @@ nnoremap <silent> <space>S  :<C-u>CocFzfListServices<CR>
 
 
 
-set colorcolumn=100
+set colorcolumn=118
 set encoding=utf-8
 set guioptions=
 set encoding=UTF-8
