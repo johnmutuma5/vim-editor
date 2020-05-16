@@ -33,7 +33,7 @@ let NERDTreeShowHidden=1
 :let mapleader=","
 :let localleader=",,"
 " Initiate Pathogen
-execute pathogen#infect() 
+" execute pathogen#infect() 
 "
 "
 " Mappings
@@ -402,7 +402,6 @@ endif
 call plug#begin()
 
 	Plug 'scrooloose/nerdtree'
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 	Plug 'flazz/vim-colorschemes'
 	Plug 'crusoexia/vim-monokai'
   Plug 'sheerun/vim-polyglot' " on demandsyntax, indent, ftplugin etc
@@ -412,7 +411,6 @@ call plug#begin()
   Plug 'tomasr/molokai'
 	Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
-  Plug 'ryanoasis/vim-devicons'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-abolish'
   Plug 'itchyny/lightline.vim'
@@ -433,7 +431,6 @@ call plug#begin()
   Plug 'romainl/flattened'
   Plug 'godlygeek/tabular'
   Plug 'gregsexton/MatchTag'
-  Plug 'ludovicchabant/vim-gutentags'
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'tpope/vim-obsession'
@@ -441,11 +438,8 @@ call plug#begin()
   Plug 'antoinemadec/coc-fzf'
   Plug 'jiangmiao/auto-pairs'
   Plug 'unblevable/quick-scope' " quick horizontal movements
-  " Plug 'nelstrom/vim-markdown-preview'
-  
-  " Plug 'justinmk/vim-sneak' " sneak to a match
-  " Plug 'pseewald/anyfold'
-  
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 call plug#end()
 
 " unblevable/quick-scope 
@@ -503,98 +497,15 @@ nnoremap <silent> <space>p  :<C-u>CocFzfListResume<CR>
 nnoremap <silent> <space>s  :<C-u>CocFzfListSymbols<CR>
 nnoremap <silent> <space>S  :<C-u>CocFzfListServices<CR>
 " coc.nvim config end
-
-
-
-
-
-
-
-
-
 set colorcolumn=118
-set encoding=utf-8
+set encoding=utf8
 set guioptions=
-set encoding=UTF-8
+" set encoding=UTF-8
 filetype plugin indent on
 :set smartindent
 
-set guifont=:h
-
-
-let g:webdevicons_enable_nerdtree = 1
-let g:NERDTreeDirArrows=0
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:DevIconsEnableFoldersOpenClose = 1
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = '🗂 '   
-let g:DevIconsDefaultFolderCloseSymbol = '🗂  '
-let g:DevIconsDefaultFolderOpenSymbol = '📂 '
-let g:NERDTreeDisablePatternMatchHighlight = 1
-" let g:NERDTreeSyntaxDisableDefaultExtensions = 1
-" let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
-" let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xml'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cmp'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['evt'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cls'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['svg'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['forceignore'] = ''
-
-let g:NERDTreeSyntaxEnabledExtensions = ['py', 'jsx', 'tsx', 'js', 'scss',  'css', 'md', 'xml', 'apexcode', 'cls', 'json', 'svg']
-let s:blue = "689FB6"
-let s:brown = "905532"
-let s:aqua =  "3AFFDB"
-let s:blue = "689FB6"
-let s:darkBlue = "44788E"
-let s:purple = "834F79"
-let s:lightPurple = "834F79"
-let s:red = "AE403F"
-let s:beige = "F5C06F"
-let s:yellow = "F09F17"
-let s:orange = "D4843E"
-let s:darkOrange = "F16529"
-let s:pink = "CB6F6F"
-let s:salmon = "EE6E73"
-let s:green = "8FAA54"
-let s:lightGreen = "31B53E"
-let s:white = "FFFFFF"
-let s:rspec_red = 'FE405F'
-let s:git_orange = 'F54D27'
-let s:gold_color = 'FFD700'
-let s:deepskyblue = '00BFFF'
-let s:mediumseagreen = '3CB371'
-let s:lawngreen = 'ADFF2F'
-let s:stickynoteyellow = 'FFFACD'
-
-let g:NERDTreeExtensionHighlightColor = {}
-let g:NERDTreeExtensionHighlightColor[''] = s:stickynoteyellow
-let g:NERDTreeExtensionHighlightColor['vim'] = s:lawngreen
-let g:NERDTreeExtensionHighlightColor['js'] = s:gold_color
-let g:NERDTreeExtensionHighlightColor['py'] = s:blue
-let g:NERDTreeExtensionHighlightColor['scss'] = s:salmon
-let g:NERDTreeExtensionHighlightColor['css'] = s:deepskyblue
-let g:NERDTreeExtensionHighlightColor['jsx'] = s:aqua
-let g:NERDTreeExtensionHighlightColor['tsx'] = s:aqua
-let g:NERDTreeExtensionHighlightColor['json'] = s:lightPurple
-let g:NERDTreeExtensionHighlightColor['md'] = s:mediumseagreen
-let g:NERDTreeExtensionHighlightColor['yml'] = s:blue
-let g:NERDTreeExtensionHighlightColor['yaml'] = s:blue
-let g:NERDTreeExtensionHighlightColor['cls'] = s:blue
-let g:NERDTreeExtensionHighlightColor['cmp'] = s:blue
-let g:NERDTreeExtensionHighlightColor['evt'] = s:red
-let g:NERDTreeExtensionHighlightColor['svg'] = s:aqua
-let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreePatternMatchHighlightColor['.+\.html\*?$'] = s:darkOrange
-let g:NERDTreePatternMatchHighlightColor['^Dockerfile.*'] = s:blue
-let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange
-let g:NERDTreeExactMatchHighlightColor['.vimrc'] = s:lawngreen
-let g:NERDTreeExactMatchHighlightColor['.gitignore*'] = s:git_orange
-let g:NERDTreeExactMatchHighlightColor['.forceignore*'] = s:aqua
-let g:NERDTreeExactMatchHighlightColor['Dockerfile'] = s:blue
+set guifont=Hack\ Nerd\ Font:14
 "
-" let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']"
 
 let g:lightline = {
       \ 'colorscheme': 'wombat',

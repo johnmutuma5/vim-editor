@@ -9,7 +9,7 @@ fun! s:SetCustomJavaScriptSyntaxHighlights()
   syntax match typescriptVariableKeyword /\v\sconst\s/
   syntax match dotNotation               /\v[ \.\<]\zs[a-zA-Z0-9_]+\ze\./
   syntax match jsDot                     /\v\./
-  syntax keyword javaScriptArrayMethods     map, filter, reduce, forEach, join, sort, push, reduceRight, pop, find, concat, reverse, shift, slice, toString, includes, keys, splice, const, let
+  syntax keyword javaScriptArrayMethods     map, filter, reduce, forEach, join, sort, push, reduceRight, pop, find, concat, reverse, shift, slice, toString, includes, keys, splice, const, let, null
   syntax keyword typescriptFuncKeyword function
 
   highlight link jsNot                       SpecialChar

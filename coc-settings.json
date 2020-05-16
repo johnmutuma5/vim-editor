@@ -1,7 +1,7 @@
 {
   "languageserver": {
     "apexcode": {
-      "command": "/Library/Java/JavaVirtualMachines/jdk-11.0.6.jdk/Contents/Home/bin/java",
+      "command": "/Library/Java/JavaVirtualMachines/jdk-11.0.7.jdk/Contents/Home/bin/java",
       "args": [
         "-cp",
         "/Users/johnmutuma/.config/nvim/salesforce-language-servers/apex-jorje-lsp.jar",
@@ -39,5 +39,5 @@
     "html",
     "xhtml"
   ],
-  "tailwindCSS.headwind.runOnSave": false,
+  "tailwindCSS.headwind.runOnSave": false
 }
