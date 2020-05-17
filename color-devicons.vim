@@ -83,14 +83,12 @@ let g:devicons_colors = {
   \'red': ['', '', '', '', '', '', '', '', ''],
   \'magenta': [''],
   \'violet': ['', '', '', '', ''],
-  \'blue': ['', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+  \'blue': ['', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
   \'cyan': ['', '', '', '', ''],
   \'green': ['', '', '', '', '']
 \}
 call DeviconsColors(g:devicons_colors)
 command RefreshDevicons call DeviconsColors(g:devicons_colors)
-
-
 
 let g:webdevicons_enable_nerdtree = 1
 " let g:NERDTreeDirArrows=0
@@ -115,8 +113,8 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cmp'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['evt'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cls'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['apex'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['soql'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cls'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['apex'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['soql'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['svg'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['forceignore'] = ''
