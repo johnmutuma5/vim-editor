@@ -27,6 +27,7 @@ C8' d8D     88       d8' db 88
     - and [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm)
   - [oh-my-zsh](https://ohmyz.sh/) - manage your zsh configuration and add themes and plugins
   - [FZF](https://github.com/junegunn/fzf) - an amazing commandline fuzzy finder for your files a lot of things 🤓. Check it out!!
+  - [ripgrep](https://github.com/BurntSushi/ripgrep) - find files by content(grep) from files. Integrates with FZF to work inside Vim/NeoVim
   - [grip](https://github.com/joeyespo/grip) - (*to enable Markdown Preview for*)
 
 
