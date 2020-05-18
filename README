@@ -14,3 +14,44 @@ d88888b d88888D d88888b
 YP      d88888P YP      
                         
 ♠️  ♤ Keep rocking 🎸 my text editing experiece 💙💚💜
+
+
+## Getting started
+### Install the necessary stuff
+
+- Make sure that you have installed the following(*Using Homebrew recommended*):
+  - Vim > 8.* or NeoVim
+  - tmux
+    - and [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm)
+  - [oh-my-zsh](https://ohmyz.sh/) - manage your zsh configuration and add themes and plugins
+  - [FZF](https://github.com/junegunn/fzf) - an amazing commandline fuzzy finder for your files a lot of things 🤓. Check it out!!
+  - [grip](https://github.com/joeyespo/grip) - (*to enable Markdown Preview for*)
+
+
+### Add symbolic links for necessary files
+
+This will help to make sure that set up and configuration files such as:
+- .vimrc
+- .zshrc
+- .tmux.conf
+- [coc.nvim](https://github.com/neoclide/coc.nvim) configuration file
+
+### Setting up terminal devicons
+This will enable Vim/NeoVim to display nerd icons e.g. File Extension icons on NERDTree etc.
+
+- Download and install a [patched Nerd Font](https://github.com/ryanoasis/nerd-fonts)
+  - such as [Hack Nerd Font](https://github.com/source-foundry/Hack/blob/master/build/ttf/Hack-Regular.ttf)
+  - ensure that the font installed has nerd devicons - You can use Font Book if using MacOS to check out the installed font
+- Open you terminal emulator e.g. ITerm and set the Font Type to the patched font
+
+
+## Setting up coc.nvim language servers
+### Salesforce language servers
+- In this repo's directory, navigate to `./salesforce-language-servers` and run `npm install`
+
+### Common language servers
+- Coc.nvim has a lot of plugins for providing language intellisense for many common languages and frameworks. Just do a google search for your favourite language. e.g.
+    - `coc-tsserver` - for TypeScript and JavaScript
+    - `coc-python` - for ...
+    - `coc-angular` - for ...
+    - etc
