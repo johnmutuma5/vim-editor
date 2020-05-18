@@ -440,12 +440,16 @@ call plug#begin()
   Plug 'unblevable/quick-scope' " quick horizontal movements
   Plug 'ryanoasis/vim-devicons'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  Plug 'JamshedVesuna/vim-markdown-preview'
+
 call plug#end()
 
 " unblevable/quick-scope 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T', '/', '?']
+
 let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_github=0
 "
 
 
@@ -504,7 +508,7 @@ set guioptions=
 filetype plugin indent on
 :set smartindent
 
-set guifont=Hack\ Nerd\ Font:14
+set guifont=Hack\ Nerd\ Font:15
 "
 
 let g:lightline = {
@@ -530,7 +534,7 @@ let g:vim_markdown_fenced_languages = ['javascript=js', 'python=py', 'html=html'
 let g:vim_markdown_folding_level = 2
 
 " force.com
-let g:apex_backup_folder="/Users/johnmutuma/Documents/force-workspace/backup/"
-let g:apex_temp_folder="/tmp/apex/gvim-deployment"
-let g:apex_tooling_force_dot_com_path="/Users/johnmutuma/Documents/force-workspace/tooling-force.com-0.4.4.0.jar"
-let g:apex_properties_folder="/Users/johnmutuma/Documents/force-workspace/properties/"
+" let g:apex_backup_folder="/Users/johnmutuma/Documents/force-workspace/backup/"
+" let g:apex_temp_folder="/tmp/apex/gvim-deployment"
+" let g:apex_tooling_force_dot_com_path="/Users/johnmutuma/Documents/force-workspace/tooling-force.com-0.4.4.0.jar"
+" let g:apex_properties_folder="/Users/johnmutuma/Documents/force-workspace/properties/"
