@@ -29,12 +29,14 @@ YP      d88888P YP
 
 
 ### Add symbolic links for necessary files
+In the root directory for this repo, run `zsh ./create-sym-links.sh`
 
 This will help to make sure that set up and configuration files such as:
 - .vimrc
 - .zshrc
 - .tmux.conf
 - [coc.nvim](https://github.com/neoclide/coc.nvim) configuration file
+
 
 ### Setting up terminal devicons
 This will enable Vim/NeoVim to display nerd icons e.g. File Extension icons on NERDTree etc.
@@ -55,3 +57,15 @@ This will enable Vim/NeoVim to display nerd icons e.g. File Extension icons on N
     - `coc-python` - for ...
     - `coc-angular` - for ...
     - etc
+
+
+                                                                   
+.oPYo.                    8     o                         88 88 88 
+8    8                    8     8                         88 88 88 
+8      .oPYo. .oPYo. .oPYo8    o8P .oPYo.   .oPYo. .oPYo. 88 88 88 
+8   oo 8    8 8    8 8    8     8  8    8   8    8 8    8 88 88 88 
+8    8 8    8 8    8 8    8     8  8    8   8    8 8    8 `' `' `' 
+`YooP8 `YooP' `YooP' `YooP'     8  `YooP'   `YooP8 `YooP' 88 88 88 
+:....8 :.....::.....::.....:::::..::.....::::....8 :.....:.........
+:::::8 :::::::::::::::::::::::::::::::::::::::ooP'.::::::::::::::::
+:::::..:::::::::::::::::::::::::::::::::::::::...::::::::::::::::::
