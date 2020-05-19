@@ -308,7 +308,7 @@ augroup END
 augroup set_filetype
   :autocmd!
   " Open Nerd tree in Projects folder
-  :autocmd BufEnter *.cmp,*.evt,*.design :set filetype=xhtml " Salesforce files
+  :autocmd BufEnter *.cmp,*.evt,*.design :set filetype=html " Salesforce files
   :autocmd BufEnter *.tsx :set filetype=typescript.tsx
   :autocmd BufEnter *.jsx :set filetype=javascript.jsx
   " :autocmd TabEnter * :NERDTree Documents/Projects/ 
