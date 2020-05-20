@@ -19,6 +19,9 @@ C8' d8D     88       d8' db 88
 
 
 ## Getting started
+NB: A lot of set up here has been done in NeoVim environment. While it's expected to work similarly in Vim >= 8, I highly
+recommended setting it up in NeoVim. The feel is expected to be similar, though.
+
 ### Install the necessary stuff
 
 - Make sure that you have installed the following(*Using Homebrew recommended*):
