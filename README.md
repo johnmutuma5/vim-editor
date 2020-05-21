@@ -32,6 +32,7 @@ recommended setting it up in NeoVim. The feel is expected to be similar, though.
   - [FZF](https://github.com/junegunn/fzf) - an amazing commandline fuzzy finder for your files a lot of things 🤓. Check it out!!
   - [ripgrep](https://github.com/BurntSushi/ripgrep) - find files by content(grep) from files. Integrates with FZF to work inside Vim/NeoVim
   - [grip](https://github.com/joeyespo/grip) - (*to enable Markdown Preview for*)
+  - pmd - static code analyzer. Please use brew or apt to install this.
 
 
 ### Add symbolic links for necessary files
@@ -56,6 +57,13 @@ This will enable Vim/NeoVim to display nerd icons e.g. File Extension icons on N
 ## Setting up coc.nvim language servers
 ### Salesforce language servers
 - In this repo's directory, navigate to `./salesforce-language-servers` and run `npm install`
+
+#### Salesforce APEX linting with PMD
+We can use PMD with ALE plugin to provdie Salesforce's APEX linting abilities. 
+
+- Ensure you have installed PMD with brew. `brew install pmd`
+- Once you have installed your plugins and you have ALE installed, create a symbolic link from the `./pmd.vim` file to `~/.vim/plugged/ale/ale_linters/apexcode/pmd.vim`
+    - `ln -s $(pwd)/pwd.vim ~/.vim/plugged/ale/ale_linters/apexcode/pmd.vim`
 
 ### Common language servers
 - Coc.nvim has a lot of plugins for providing language intellisense for many common languages and frameworks. Just do a google search for your favourite language. e.g.
