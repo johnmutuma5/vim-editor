@@ -441,6 +441,8 @@ call plug#begin()
   Plug 'ryanoasis/vim-devicons'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'JamshedVesuna/vim-markdown-preview'
+  Plug 'vim-scripts/pmd.vim'
+  Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -451,6 +453,10 @@ let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_browser='Google Chrome'
 let vim_markdown_preview_github=0
 "
+
+" let g:ale_linters = {
+" \   'apexcode': ['pmd'],
+" \}
 
 
 " FZF.vim now supports this command out of the box
