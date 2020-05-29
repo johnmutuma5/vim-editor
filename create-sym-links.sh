@@ -14,7 +14,7 @@ ln -s $(pwd)/system-clipboard.vim ~/.vim/plugin/system-clipboard.vim
 ln -s $(pwd)/custom-syntax.vim ~/.vim/plugin/custom-syntax.vim
 ln -s $(pwd)/toggle-colorscheme.vim ~/.vim/plugin/toggle-colorsheme.vim
 ln -s $(pwd)/color-devicons.vim ~/.vim/plugin/color-devicons.vim
-ln -s $(pwd)/dragvisuals.vim ~/.vim/plugin/dragvisuals.vim
+# ln -s $(pwd)/dragvisuals.vim ~/.vim/plugin/dragvisuals.vim
 
 ln -s $(pwd)/init.vim ~/.config/nvim/init.vim
 ln -s $(pwd)/coc-settings.json ~/.config/nvim/coc-settings.json
