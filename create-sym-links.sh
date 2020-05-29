@@ -19,5 +19,5 @@ ln -s $(pwd)/dragvisuals.vim ~/.vim/plugin/dragvisuals.vim
 ln -s $(pwd)/init.vim ~/.config/nvim/init.vim
 ln -s $(pwd)/coc-settings.json ~/.config/nvim/coc-settings.json
 ln -s $(pwd)/salesforce-language-servers/ ~/.config/nvim/salesforce-language-servers
-ln -s $(pwd)/pwd.vim ~/.vim/plugged/ale/ale_linters/apexcode/pmd.vim
+ln -s $(pwd)/pmd-apex.vim ~/.vim/plugged/ale/ale_linters/apexcode/pmd.vim
 
