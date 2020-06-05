@@ -1,9 +1,5 @@
-public with sharing class AccountData {
+public class AccountData {
    
-    public  List<Monthly_Budget_Data__c> budgetDataList {get; set;}
-    public  List<Monthly_Financial_Account_Data__c> financialAccountDataList {get; set;}
-
-
     public List<Monthly_Financial_Account_Data__c> createNewFinincial(String dateId){
          // add the latest date to the balances latest date
         List<Monthly_Financial_Account_Data__c> subList = new List<Monthly_Financial_Account_Data__c>();
@@ -39,7 +35,7 @@ public with sharing class AccountData {
         List<Monthly_Budget_Data__c> subList = new List<Monthly_Budget_Data__c>();
         if(budgetDataList != null && !budgetDataList.isEmpty()){
             for(Monthly_Budget_Data__c monthlyBudget : budgetDataList) {
-                if(monthlyBudget.Income_Frequency__c != 'One-Time/Non-Recurring') {
+                if(monthlyBudget.Income_Frequency__c != "One-Time/Non-Recurring") {
                     Monthly_Budget_Data__c budgetAccount;
                     budgetAccount = new Monthly_Budget_Data__c();
                     budgetAccount.Budgets__c = monthlyBudget.Budgets__r.Id;
