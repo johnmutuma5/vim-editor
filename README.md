@@ -36,7 +36,7 @@ recommended setting it up in NeoVim. The feel is expected to be similar, though.
 
 
 ### Add symbolic links for necessary files
-In the root directory for this repo, run `zsh ./create-sym-links.sh`. Ignore missing directory for ale linters pmd.
+In the root directory for this repo, run `zsh ./create-sym-links.sh`. Ignore missing directory for ale linters pmd; it should be created once vim plugins have been installed.
 
 This will help to make sure that set up and configuration files such as:
 - .vimrc
@@ -62,7 +62,7 @@ This will enable Vim/NeoVim to display nerd icons e.g. File Extension icons on N
 We can use PMD with ALE plugin to provdie Salesforce's APEX linting abilities. 
 
 - Ensure you have installed PMD with brew. `brew install pmd`
-- Once you have installed your plugins and you have ALE installed, create a symbolic link from the `./pmd.vim` file to `~/.vim/plugged/ale/ale_linters/apexcode/pmd.vim`
+- Once you have installed your plugins and you have ALE installed, create a symbolic link from the `./pmd-apex.vim` file to `~/.vim/plugged/ale/ale_linters/apexcode/pmd.vim`
     - `ln -s $(pwd)/pmd-apex.vim ~/.vim/plugged/ale/ale_linters/apexcode/pmd.vim`
 
 ### Common language servers
