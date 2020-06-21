@@ -48,6 +48,9 @@ let NERDTreeShowHidden=1
 :nnoremap <leader>mj ddp
 " cut line - cut a line
 :nnoremap <leader>xl dd
+
+" Tabularize Object literals after full colon
+:nnoremap <leader>tbiB viB:Tabu /:\zs<CR>
 "
 " Ctrl + n - Open nerdTree
 function! s:OpenNerdTree()
