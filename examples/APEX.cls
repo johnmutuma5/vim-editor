@@ -1,4 +1,3 @@
-
 public with sharing class AccountData {
    
     public  List<Monthly_Budget_Data__c> budgetDataList {get; set;}
@@ -68,4 +67,3 @@ public with sharing class AccountData {
     }
    
 }
-

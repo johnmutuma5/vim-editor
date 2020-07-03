@@ -9,7 +9,7 @@
   "author": "John Mutuma",
   "license": "ISC",
   "dependencies": {
-    "@salesforce/aura-language-server": "^2.3.16",
-    "@salesforce/lwc-language-server": "^2.3.16"
+    "@salesforce/aura-language-server": "^2.3.19",
+    "@salesforce/lwc-language-server": "^2.3.19"
   }
 }
