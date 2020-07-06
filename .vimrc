@@ -95,7 +95,12 @@ endfunction
 :noremap <C-T>o :tabonly<CR>
 " closing windows fugitive style
 :nnoremap gq <C-W>c
-"
+
+" resizing windows
+:nnoremap <C-W><up> <C-W>5+
+:nnoremap <C-W><down> <C-W>5-
+:nnoremap <C-W><left> <C-W>5<
+:nnoremap <C-W><right> <C-W>5>
 "
 " File versions traversal - use 0Glog to create a quick list of file versions
 " and  use the mappings below to traverse the file versions
@@ -446,6 +451,7 @@ call plug#begin()
   Plug 'JamshedVesuna/vim-markdown-preview'
   Plug 'vim-scripts/pmd.vim'
   Plug 'dense-analysis/ale'
+  Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()
 
