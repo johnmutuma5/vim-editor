@@ -90,7 +90,7 @@ endfunction
 " use: disregard wrap with j and k 
 :nnoremap j gj
 :nnoremap k gk
-"
+:nnoremap <leader>ww :noa w<cr>
 " set current tab as only
 :noremap <C-T>o :tabonly<CR>
 " closing windows fugitive style
@@ -316,7 +316,7 @@ augroup END
 augroup set_filetype
   :autocmd!
   " Open Nerd tree in Projects folder
-  :autocmd BufEnter *.cmp,*.evt,*.design :set filetype=html " Salesforce files
+  :autocmd BufEnter *.cmp,*.evt,*.design,*.page :set filetype=html " Salesforce files
   :autocmd BufEnter *.tsx :set filetype=typescript.tsx
   :autocmd BufEnter *.jsx :set filetype=javascript.jsx
   " :autocmd TabEnter * :NERDTree Documents/Projects/ 
@@ -407,53 +407,53 @@ if !exists('g:syntax_on')
 	syntax enable
 endif
 
-call plug#begin()
-
-	Plug 'scrooloose/nerdtree'
-	Plug 'flazz/vim-colorschemes'
-	Plug 'crusoexia/vim-monokai'
-  Plug 'sheerun/vim-polyglot' " on demandsyntax, indent, ftplugin etc
-  Plug 'vim-scripts/SyntaxComplete'
-  Plug 'maxmellon/vim-jsx-pretty'
-	Plug 'crusoexia/vim-javascript-lib'
-  Plug 'tomasr/molokai'
-	Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-abolish'
-  Plug 'itchyny/lightline.vim'
-  Plug 'iamcco/mathjax-support-for-mkdp'
-  Plug 'iamcco/markdown-preview.nvim'
-  Plug 'plasticboy/vim-markdown'
-  Plug 'ekalinin/dockerfile.vim'
-  Plug 'davidhalter/jedi-vim'
-  Plug 'szymonmaszke/vimpyter'
-  Plug 'neowit/vim-force.com'
-  Plug 'majutsushi/tagbar'
-  Plug 'isRuslan/vim-es6'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'tpope/vim-vinegar'
-  Plug 'chrisbra/colorizer'
-  Plug 'mattn/emmet-vim'
-  Plug 'rakr/vim-one'
-  Plug 'romainl/flattened'
-  Plug 'godlygeek/tabular'
-  Plug 'gregsexton/MatchTag'
-  Plug 'junegunn/fzf.vim'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'tpope/vim-obsession'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'antoinemadec/coc-fzf'
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'unblevable/quick-scope' " quick horizontal movements
-  Plug 'ryanoasis/vim-devicons'
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-  Plug 'JamshedVesuna/vim-markdown-preview'
-  Plug 'vim-scripts/pmd.vim'
-  Plug 'dense-analysis/ale'
-  Plug 'dracula/vim', { 'as': 'dracula' }
+call plug#begin('~/.vim/plugged')
+ Plug 'scrooloose/nerdtree'
+ Plug 'flazz/vim-colorschemes'
+ Plug 'crusoexia/vim-monokai'
+ Plug 'sheerun/vim-polyglot' " on demandsyntax, indent, ftplugin etc
+ Plug 'vim-scripts/SyntaxComplete'
+ Plug 'maxmellon/vim-jsx-pretty'
+ Plug 'crusoexia/vim-javascript-lib'
+ Plug 'tomasr/molokai'
+ Plug 'tpope/vim-surround'
+ Plug 'tpope/vim-commentary'
+ Plug 'tpope/vim-fugitive'
+ Plug 'tpope/vim-abolish'
+ Plug 'itchyny/lightline.vim'
+ Plug 'iamcco/mathjax-support-for-mkdp'
+ Plug 'iamcco/markdown-preview.nvim'
+ Plug 'plasticboy/vim-markdown'
+ Plug 'ekalinin/dockerfile.vim'
+ Plug 'davidhalter/jedi-vim'
+ Plug 'szymonmaszke/vimpyter'
+ Plug 'neowit/vim-force.com'
+ Plug 'majutsushi/tagbar'
+ Plug 'isRuslan/vim-es6'
+ Plug 'ctrlpvim/ctrlp.vim'
+ Plug 'tpope/vim-vinegar'
+ Plug 'chrisbra/colorizer'
+ Plug 'mattn/emmet-vim'
+ Plug 'rakr/vim-one'
+ Plug 'romainl/flattened'
+ Plug 'godlygeek/tabular'
+ Plug 'gregsexton/MatchTag'
+ Plug 'junegunn/fzf.vim'
+ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+ Plug 'tpope/vim-obsession'
+ Plug 'neoclide/coc.nvim', {'branch': 'release'}
+ Plug 'antoinemadec/coc-fzf'
+ Plug 'jiangmiao/auto-pairs'
+ Plug 'unblevable/quick-scope' " quick horizontal movements
+ Plug 'ryanoasis/vim-devicons'
+ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+ Plug 'JamshedVesuna/vim-markdown-preview'
+ Plug 'vim-scripts/pmd.vim'
+ Plug 'dense-analysis/ale'
+ Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()
+
 
 " unblevable/quick-scope 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T', '/', '?']
@@ -508,13 +508,14 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Show commands
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " nnoremap <silent> <space>c  :<C-u>CocFzfListCommands<cr>
-nnoremap <silent> <space>a  :<C-u>CocFzfListDiagnostics<CR>
-nnoremap <silent> <space>e  :<C-u>CocFzfListExtensions<CR>
-nnoremap <silent> <space>l  :<C-u>CocFzfListLocation<CR>
-nnoremap <silent> <space>o  :<C-u>CocFzfListOutline<CR>
-nnoremap <silent> <space>p  :<C-u>CocFzfListResume<CR>
-nnoremap <silent> <space>s  :<C-u>CocFzfListSymbols<CR>
-nnoremap <silent> <space>S  :<C-u>CocFzfListServices<CR>
+nnoremap <silent> <space>a  :CocDiagnostics<CR>
+nnoremap <silent> <space>e  :CocExtensions<CR>
+nnoremap <silent> <space>l  :CocLocation<CR>
+nnoremap <silent> <space>o  :CocFzfListOutline<CR>
+nnoremap <silent> <space>p  :CocListResume<CR>
+nnoremap <silent> <space>s  :CocList symbols<CR>
+nnoremap <silent> <space>S  :CocList services<CR>
+nnoremap <silent> <space>rs :CocRestart<CR>
 " coc.nvim config end
 set colorcolumn=118
 set encoding=utf8

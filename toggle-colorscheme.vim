@@ -21,7 +21,7 @@ function s:toggleDayNight()
 
     let g:is_day = 0
   elseif g:is_day == 0 " it's night
-    colorscheme monokai  
+    colorscheme monokai
     set background=dark
     hi Normal ctermbg=235
     hi CursorLine cterm=bold ctermbg=237
