@@ -1,19 +1,5 @@
 {
   "languageserver": {
-    "apexcode": {
-      "command": "/Library/Java/JavaVirtualMachines/jdk-11.0.7.jdk/Contents/Home/bin/java",
-      "args": [
-        "-cp",
-        "/Users/johnmutuma/.config/nvim/salesforce-language-servers/apex-jorje-lsp.jar",
-        "-Ddebug.internal.errors=true",
-        /*"-Ddebug.semantic.errors=true",*/
-        "apex.jorje.lsp.ApexLanguageServerLauncher"
-      ],
-      "filetypes":[
-        "apexcode",
-        "cls"
-      ]
-    },
     "lwc": {
       "module": "/Users/johnmutuma/.config/nvim/salesforce-language-servers/node_modules/@salesforce/lwc-language-server/lib/server.js",
       "args": [
@@ -38,9 +24,17 @@
       ]
     }
   },
+  "salesforcedx-vscode-apex.java.home": "/Library/Java/JavaVirtualMachines/jdk-11.0.7.jdk/Contents/Home",
   "tailwindCSS.htmlLanguages": [
     "html",
     "xhtml"
   ],
-  "tailwindCSS.headwind.runOnSave": false
+  "tailwindCSS.headwind.runOnSave": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "html",
+    "javascript",
+    "apexcode",
+    "xml"
+  ]
 }
