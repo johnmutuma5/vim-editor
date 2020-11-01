@@ -1,29 +1,5 @@
 {
-  "languageserver": {
-    "lwc": {
-      "module": "/Users/johnmutuma/.config/nvim/salesforce-language-servers/node_modules/@salesforce/lwc-language-server/lib/server.js",
-      "args": [
-        "--node-ipc"
-      ],
-      "filetypes": [
-        "html",
-        "xhtml"
-      ]
-    },
-    "aura": {
-      "module": "/Users/johnmutuma/.config/nvim/salesforce-language-servers/node_modules/@salesforce/aura-language-server/lib/server.js",
-      "args": [
-        "--node-ipc"
-      ],
-      "filetypes": [
-        "html",
-        "javascript",
-        "js",
-        "xhtml",
-        "cmp"
-      ]
-    }
-  },
+  "languageserver": {},
   "salesforcedx-vscode-apex.java.home": "/Library/Java/JavaVirtualMachines/jdk-11.0.7.jdk/Contents/Home",
   "tailwindCSS.htmlLanguages": [
     "html",
