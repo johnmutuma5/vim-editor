@@ -55,8 +55,6 @@ This will enable Vim/NeoVim to display nerd icons e.g. File Extension icons on N
 
 
 ## Setting up coc.nvim language servers
-### Salesforce language servers
-- In this repo's directory, navigate to `./salesforce-language-servers` and run `npm install`
 
 #### Salesforce APEX linting with PMD
 We can use PMD with ALE plugin to provdie Salesforce's APEX linting abilities. 
