@@ -21,13 +21,22 @@ function s:toggleDayNight()
 
     let g:is_day = 0
   elseif g:is_day == 0 " it's night
-    colorscheme monokai
+    " colorscheme monokai
+    colorscheme molokai
     set background=dark
     hi Normal ctermbg=235
     hi CursorLine cterm=bold ctermbg=237
     hi CursorColumn cterm=bold ctermbg=237
-    hi ColorColumn ctermbg=237 guibg=lightgray
-    hi Pmenu ctermbg=gray guibg=gray
+    hi ColorColumn ctermbg=237 guibg=lightgray 
+    hi Pmenu ctermbg=23 ctermfg=white guibg=lightgray 
+    hi CocFloating ctermbg=66 ctermfg=195
+    hi CocWarningSign ctermbg=66 ctermfg=214
+    hi CocInfoSign ctermbg=66 ctermfg=195
+    hi CocErrorSign ctermbg=66 ctermfg=160
+    hi Visual term=reverse cterm=reverse guibg=Grey
+    hi Folded ctermbg=236 ctermfg=245 
+    hi Directory ctermfg=76 cterm=bold
+    hi Normal ctermfg=253
 
     let g:is_day = 1
   endif

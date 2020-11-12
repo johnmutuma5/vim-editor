@@ -27,6 +27,7 @@ set smartcase
 :hi CursorLine cterm=bold
 " 
 
+:let $NVIM_COC_LOG_LEVEL='debug'
 
 let NERDTreeShowHidden=1
 
@@ -367,7 +368,7 @@ augroup jupyter_notebooks
   " :autocmd Filetype ipynb nmap <silent><Leader>n :VimpyterStartNteract<CR>
 augroup END
 "}}}
-
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " End FileType Auto commands}}}
 
 " End Auto commands}}}
@@ -460,7 +461,7 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T', '/', '?']
 
 let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_browser='Google Chrome'
-let vim_markdown_preview_github=0
+let vim_markdown_preview_github=1
 "
 
 " let g:ale_linters = {
@@ -470,8 +471,14 @@ let vim_markdown_preview_github=0
 
 " FZF.vim now supports this command out of the box
 :nnoremap <C-f>g :Rg -g '*.*'<space> ''<left>
-:nnoremap <C-f>f :FZF<CR>
-:nnoremap <C-f>b :Buffers<CR>
+" :nnoremap <C-f>g :CocCommand fzf-preview.ProjectGrep 
+" :nnoremap <C-f>f :FZF<CR>
+:nnoremap <C-f>f :CocCommand fzf-preview.ProjectFiles<CR>
+" :nnoremap <C-f>b :Buffers<CR>
+:nnoremap <C-f>b :CocCommand fzf-preview.AllBuffers<CR>
+" :nnoremap <C-f>b :Buffers<CR>
+:nnoremap <C-f>c :CocCommand fzf-preview.GitBranches<CR>
+"
 " so this code is no longer needed.
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
@@ -504,11 +511,12 @@ set signcolumn=yes
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Show commands
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " nnoremap <silent> <space>c  :<C-u>CocFzfListCommands<cr>
 nnoremap <silent> <space>a  :CocDiagnostics<CR>
+nnoremap <silent> <space>f  :CocFix<CR>
 nnoremap <silent> <space>e  :CocExtensions<CR>
 nnoremap <silent> <space>l  :CocLocation<CR>
 nnoremap <silent> <space>o  :CocFzfListOutline<CR>
@@ -517,6 +525,7 @@ nnoremap <silent> <space>s  :CocList symbols<CR>
 nnoremap <silent> <space>S  :CocList services<CR>
 nnoremap <silent> <space>rs :CocRestart<CR>
 " coc.nvim config end
+
 set colorcolumn=118
 set encoding=utf8
 set guioptions=
