@@ -409,49 +409,51 @@ if !exists('g:syntax_on')
 endif
 
 call plug#begin('~/.vim/plugged')
- Plug 'scrooloose/nerdtree'
- Plug 'flazz/vim-colorschemes'
- Plug 'crusoexia/vim-monokai'
- Plug 'sheerun/vim-polyglot' " on demandsyntax, indent, ftplugin etc
- Plug 'vim-scripts/SyntaxComplete'
- Plug 'maxmellon/vim-jsx-pretty'
- Plug 'crusoexia/vim-javascript-lib'
- Plug 'tomasr/molokai'
- Plug 'tpope/vim-surround'
- Plug 'tpope/vim-commentary'
- Plug 'tpope/vim-fugitive'
- Plug 'tpope/vim-abolish'
- Plug 'itchyny/lightline.vim'
- Plug 'iamcco/mathjax-support-for-mkdp'
- Plug 'iamcco/markdown-preview.nvim'
- Plug 'plasticboy/vim-markdown'
- Plug 'ekalinin/dockerfile.vim'
- Plug 'davidhalter/jedi-vim'
- Plug 'szymonmaszke/vimpyter'
- Plug 'neowit/vim-force.com'
- Plug 'majutsushi/tagbar'
- Plug 'isRuslan/vim-es6'
- Plug 'ctrlpvim/ctrlp.vim'
- Plug 'tpope/vim-vinegar'
- Plug 'chrisbra/colorizer'
- Plug 'mattn/emmet-vim'
- Plug 'rakr/vim-one'
- Plug 'romainl/flattened'
- Plug 'godlygeek/tabular'
- Plug 'gregsexton/MatchTag'
- Plug 'junegunn/fzf.vim'
- Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
- Plug 'tpope/vim-obsession'
- Plug 'neoclide/coc.nvim', {'branch': 'release'}
- Plug 'antoinemadec/coc-fzf'
- Plug 'jiangmiao/auto-pairs'
- Plug 'unblevable/quick-scope' " quick horizontal movements
- Plug 'ryanoasis/vim-devicons'
- Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
- Plug 'JamshedVesuna/vim-markdown-preview'
- Plug 'vim-scripts/pmd.vim'
- Plug 'dense-analysis/ale'
- Plug 'dracula/vim', { 'as': 'dracula' }
+  Plug 'scrooloose/nerdtree'
+  Plug 'flazz/vim-colorschemes'
+  Plug 'crusoexia/vim-monokai'
+  Plug 'sheerun/vim-polyglot' " on demandsyntax, indent, ftplugin etc
+  Plug 'vim-scripts/SyntaxComplete'
+  Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'crusoexia/vim-javascript-lib'
+  Plug 'tomasr/molokai'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-abolish'
+  Plug 'itchyny/lightline.vim'
+  Plug 'iamcco/mathjax-support-for-mkdp'
+  Plug 'iamcco/markdown-preview.nvim'
+  Plug 'plasticboy/vim-markdown'
+  Plug 'ekalinin/dockerfile.vim'
+  Plug 'davidhalter/jedi-vim'
+  Plug 'szymonmaszke/vimpyter'
+  Plug 'neowit/vim-force.com'
+  Plug 'majutsushi/tagbar'
+  Plug 'isRuslan/vim-es6'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'tpope/vim-vinegar'
+  Plug 'chrisbra/colorizer'
+  Plug 'mattn/emmet-vim'
+  Plug 'rakr/vim-one'
+  Plug 'romainl/flattened'
+  Plug 'godlygeek/tabular'
+  Plug 'gregsexton/MatchTag'
+  Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'tpope/vim-obsession'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'antoinemadec/coc-fzf'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'unblevable/quick-scope' " quick horizontal movements
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  Plug 'JamshedVesuna/vim-markdown-preview'
+  Plug 'vim-scripts/pmd.vim'
+  Plug 'dense-analysis/ale'
+  Plug 'dracula/vim', { 'as': 'dracula' }
+  Plug 'machakann/vim-highlightedyank'
+  Plug 'junegunn/vim-peekaboo'
 
 call plug#end()
 
@@ -462,6 +464,7 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T', '/', '?']
 let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_browser='Google Chrome'
 let vim_markdown_preview_github=1
+let g:highlightedyank_highlight_duration = 300
 "
 
 " let g:ale_linters = {
