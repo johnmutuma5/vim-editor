@@ -318,6 +318,7 @@ augroup set_filetype
   :autocmd!
   " Open Nerd tree in Projects folder
   :autocmd BufEnter *.cmp,*.evt,*.design,*.page :set filetype=html " Salesforce files
+  :autocmd BufEnter *.apex :set filetype=apexcode " Salesforce files
   :autocmd BufEnter *.tsx :set filetype=typescript.tsx
   :autocmd BufEnter *.jsx :set filetype=javascript.jsx
   " :autocmd TabEnter * :NERDTree Documents/Projects/ 
@@ -423,7 +424,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-abolish'
   Plug 'itchyny/lightline.vim'
   Plug 'iamcco/mathjax-support-for-mkdp'
-  Plug 'iamcco/markdown-preview.nvim'
+  " Plug 'iamcco/markdown-preview.nvim'
+  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
   Plug 'plasticboy/vim-markdown'
   Plug 'ekalinin/dockerfile.vim'
   Plug 'davidhalter/jedi-vim'
@@ -454,6 +456,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'machakann/vim-highlightedyank'
   Plug 'junegunn/vim-peekaboo'
+  Plug 'jparise/vim-graphql'
 
 call plug#end()
 
@@ -478,9 +481,10 @@ let g:highlightedyank_highlight_duration = 300
 " :nnoremap <C-f>f :FZF<CR>
 :nnoremap <C-f>f :CocCommand fzf-preview.ProjectFiles<CR>
 " :nnoremap <C-f>b :Buffers<CR>
-:nnoremap <C-f>b :CocCommand fzf-preview.AllBuffers<CR>
+:nnoremap <C-f>b :CocCommand fzf-preview.Buffers<CR>
 " :nnoremap <C-f>b :Buffers<CR>
 :nnoremap <C-f>c :CocCommand fzf-preview.GitBranches<CR>
+
 "
 " so this code is no longer needed.
 command! -bang -nargs=* Rg
@@ -495,6 +499,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 " if hidden is not set, TextEdit might fail.
@@ -554,6 +560,10 @@ let g:lightline.tabline = {
   \   'left': [ ['tabs'] ],
   \   'right': [],
   \ }
+" let s:palette = g:lightline#colorscheme#PaperColor#palette
+" let s:palette.tabline.tabsel = [ [ '#d0d0d0', '#5f8787', 252, 66, 'bold' ] ]
+" unlet s:palette
+
 set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
 

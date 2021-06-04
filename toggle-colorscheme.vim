@@ -29,10 +29,14 @@ function s:toggleDayNight()
     hi CursorColumn cterm=bold ctermbg=237
     hi ColorColumn ctermbg=237 guibg=lightgray 
     hi Pmenu ctermbg=23 ctermfg=white guibg=lightgray 
+    hi PmenuSel ctermbg=white ctermfg=black
     hi CocFloating ctermbg=66 ctermfg=195
-    hi CocWarningSign ctermbg=66 ctermfg=214
-    hi CocInfoSign ctermbg=66 ctermfg=195
-    hi CocErrorSign ctermbg=66 ctermfg=160
+    hi CocErrorFloat ctermbg=lightgray ctermfg=160
+    hi CocWarningFloat ctermbg=lightgray ctermfg=172
+    hi CocInfoFloat ctermbg=gray ctermfg=lightgray
+    " hi CocWarningSign ctermbg=66 ctermfg=214
+    " hi CocInfoSign ctermbg=66 ctermfg=195
+    " hi CocErrorSign ctermbg=66 ctermfg=160
     hi Visual term=reverse cterm=reverse guibg=Grey
     hi Folded ctermbg=236 ctermfg=245 
     hi Directory ctermfg=76 cterm=bold
