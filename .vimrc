@@ -20,7 +20,7 @@ set shiftwidth=2
 set expandtab
 set hlsearch
 set incsearch
-" set ignorecase
+set ignorecase
 set smartcase
 
 " cursoline bold
@@ -33,9 +33,6 @@ let NERDTreeShowHidden=1
 
 :let mapleader=","
 :let localleader=",,"
-" Initiate Pathogen
-" execute pathogen#infect() 
-"
 "
 " Mappings
 " put up - move a line up
@@ -65,24 +62,15 @@ endfunction
 " Source vimrc
 :nnoremap <leader>sv :source $MYVIMRC<cr>
 " Uppercase current word insert mode
-:inoremap <c-u> <esc>magUiw`aa
+:inoremap <c-u> <esc>gUiwea
 " Open file in vertical split with under cursor name in same dir as current file
 :nnoremap <leader>gf :vertical wincmd f<CR>
 " :nnoremap <leader>, , 
 " the mapping above will help avoid the delay with the default behaviour of ','  
-"
-" go to the first character of the current line
-" :noremap H ^
-" go to the last character of the current line
-" :noremap L $
+
 " go into normal mode quickly
 :inoremap jk <esc>
-:"
-" remove in favour of shift esc
-" :inoremap <S-...><space> <esc>  
-" the above may not be necessary when terminal app is configured to send ESC signal upon Shift-Space e.g. iterm
 
-" add space and remain in normal mode
 " highlight search off
 :nnoremap <leader><CR> :nohlsearch<CR>:<CR>
 " " use very magic when searching
@@ -103,9 +91,6 @@ endfunction
 :nnoremap <C-W><left> <C-W>5<
 :nnoremap <C-W><right> <C-W>5>
 "
-" File versions traversal - use 0Glog to create a quick list of file versions
-" and  use the mappings below to traverse the file versions
-" a commit older
 :nnoremap ]v :cn<CR>
 " oldest commit
 :nnoremap ]]v :clast<CR>
@@ -115,54 +100,6 @@ endfunction
 " latest commmit
 :nnoremap [[v :cfirst<CR>
 
-" use Ctrl + j to move windows
-:nnoremap <c-h> ^ 
-:nnoremap <c-l> $ 
-" 
-" :nnoremap <c-l> <c-w>l
-" :nnoremap <c-c> <c-w>c
-" :nnoremap <c-k> <c-w>k
-" :nnoremap <c-h> <c-w>h
-" :nnoremap <c-l> <c-w>l
-"
-" auto close { braces into block mode
-" :inoremap {<cr> {<cr>}<esc>O
-" auto close [ brackets into block mode
-" :inoremap [<cr> [<cr>]<esc>O
-" auto close ( brackets into block mode
-" :inoremap (<cr> (<cr>)<esc>O
-"
-" cbange inside []
-" :inoremap cir ci[
-"
-" auto close ( inline mode
-" :inoremap (cc ()<left>
-" auto close ( inline mode and add sorrounding spaces
-" :inoremap (cs (<space><space>)<left><left>
-"
-" auto close { inline mode
-" :inoremap {cc {}<left>
-" auto close { inline mode and add sorrounding spaces
-" :inoremap {cs {<space><space>}<left><left>
-"
-"
-" auto close [ inline mode
-" :inoremap [cc []<left>
-" auto close [ inline mode and add sorrounding spaces
-" :inoremap [cs [<space><space>]<left><left>
-" auto close self closing tags e.g. <img /> inline mode
-" :inoremap <cc <<space>/><left><left><left>
-" move right with ctrl-l in insert mode
-" use terminal escape sequences
-:inoremap <ESC>f <right>
-" following escape sequence useful when iterm is mapped for Alt+l to move cursor right a char
-:inoremap <ESC>[C <right> 
-" move left with ctrl-h in insert mode
-:inoremap <ESC>b <left>
-" following escape sequence useful when iterm is mapped for Alt+l to move cursor left a char
-:inoremap <ESC>[D <left>
-" move up with ctrl-k in insert mode. This will overwrite :digraphs command
-" which I rarely use
 :inoremap <C-k> <up>
 " move down with ctrl-j in insert mode.
 :inoremap <C-j> <down>
@@ -178,27 +115,10 @@ endfunction
 " insert mode delete next character
 :inoremap <C-l> <right><delete><left>
 
-" disable arrow keys 
-" :nnoremap <left> :<CR>
-" :nnoremap <up> :<CR>
-" :nnoremap <right> :<CR>
-" :nnoremap <down> :<CR>
-" :inoremap <left> <ESC>a
-" :inoremap <up> <Esc>a
-" :inoremap <right> <Esc>a
-" :inoremap <down> <Esc>a
-
 " higlight colors
 :nnoremap <leader>hco :ColorHighlight<CR> 
 :nnoremap <leader>hcc :ColorClear<CR>
 "
-" auto close " inline mode
-" :inoremap "cc ""<left>
-" auto close ' inline mode
-" :inoremap 'cc ''<left>
-" auto close ` inline mode
-" :inoremap `cc ``<left>
-" 
 " CtrlP
 :nnoremap <C-p>f :CtrlP<cr>
 :nnoremap <C-p>b :CtrlPMRUFiles<cr>
@@ -215,8 +135,6 @@ endfunction
 :nnoremap <leader>U :PlugUpdate<CR>
 :nnoremap <leader>C :PlugClean<CR>
 "
-" grep the word under the cursor
-" :nnoremap <leader>g :execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<CR>:copen<CR>
 " to go to the next grep match
 :nnoremap ]m :cnext<CR>
 " to go to the previous grep match
@@ -287,7 +205,7 @@ endfunction
 " TogglCursorLine <leader>tcl {{{
 function! s:ToggleCursorLine ()
   setlocal cursorline!
-  endfunction
+endfunction
 
 :nnoremap <leader>tcl :call <SID>ToggleCursorLine()<CR>
 "}}}
@@ -441,8 +359,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'romainl/flattened'
   Plug 'godlygeek/tabular'
   Plug 'gregsexton/MatchTag'
-  Plug 'junegunn/fzf.vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
+  Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
   Plug 'tpope/vim-obsession'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'antoinemadec/coc-fzf'
@@ -468,12 +387,6 @@ let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_browser='Google Chrome'
 let vim_markdown_preview_github=1
 let g:highlightedyank_highlight_duration = 300
-"
-
-" let g:ale_linters = {
-" \   'apexcode': ['pmd'],
-" \}
-
 
 " FZF.vim now supports this command out of the box
 :nnoremap <C-f>g :Rg -g '*.*'<space> ''<left>
@@ -485,16 +398,10 @@ let g:highlightedyank_highlight_duration = 300
 " :nnoremap <C-f>b :Buffers<CR>
 :nnoremap <C-f>c :CocCommand fzf-preview.GitBranches<CR>
 
+let g:fzf_preview_use_dev_icons = 1
+let g:fzf_preview_command = 'bat --color=always --plain --number --theme="Monokai Extended" {-1}' " Installed bat
 "
-" so this code is no longer needed.
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
-  \   <bang>0)
-
-" coc.nvim config start
+"" coc.nvim config start
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -519,8 +426,6 @@ set shortmess+=c
 set signcolumn=yes
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
-" Show all diagnostics
-" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Show commands
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " nnoremap <silent> <space>c  :<C-u>CocFzfListCommands<cr>
@@ -560,9 +465,6 @@ let g:lightline.tabline = {
   \   'left': [ ['tabs'] ],
   \   'right': [],
   \ }
-" let s:palette = g:lightline#colorscheme#PaperColor#palette
-" let s:palette.tabline.tabsel = [ [ '#d0d0d0', '#5f8787', 252, 66, 'bold' ] ]
-" unlet s:palette
 
 set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
@@ -570,9 +472,3 @@ set guioptions-=e  " Don't use GUI tabline
 let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
 let g:vim_markdown_fenced_languages = ['javascript=js', 'python=py', 'html=html', 'css=css']
 let g:vim_markdown_folding_level = 2
-
-" force.com
-" let g:apex_backup_folder="/Users/johnmutuma/Documents/force-workspace/backup/"
-" let g:apex_temp_folder="/tmp/apex/gvim-deployment"
-" let g:apex_tooling_force_dot_com_path="/Users/johnmutuma/Documents/force-workspace/tooling-force.com-0.4.4.0.jar"
-" let g:apex_properties_folder="/Users/johnmutuma/Documents/force-workspace/properties/"

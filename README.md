@@ -49,7 +49,7 @@ This will help to make sure that set up and configuration files such as:
 This will enable Vim/NeoVim to display nerd icons e.g. File Extension icons on NERDTree etc.
 
 - Download and install a [patched Nerd Font](https://github.com/ryanoasis/nerd-fonts)
-  - such as [Hack Nerd Font](https://github.com/source-foundry/Hack/blob/master/build/ttf/Hack-Regular.ttf)
+  - such as [Hack Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip)
   - ensure that the font installed has nerd devicons - You can use Font Book if using MacOS to check out the installed font
 - Open you terminal emulator e.g. ITerm and set the Font Type to the patched font
 

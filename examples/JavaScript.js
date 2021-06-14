@@ -1,5 +1,10 @@
 class Demo {
-  constructor() {
+  constructor() {}
+
+  hellos() {
 
   }
 }
+
+const me = new Demo();
+me.hellos();
