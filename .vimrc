@@ -51,6 +51,7 @@ let NERDTreeShowHidden=1
 :nnoremap <leader>tbiB viB:Tabu /:\zs<CR>
 "
 " Ctrl + n - Open nerdTree
+:let g:NERDTreeWinSize=60
 function! s:OpenNerdTree()
   :execute ':NERDTreeToggle %'
 endfunction
@@ -118,6 +119,7 @@ endfunction
 " higlight colors
 :nnoremap <leader>hco :ColorHighlight<CR> 
 :nnoremap <leader>hcc :ColorClear<CR>
+:nnoremap <leader>ct :ColorToggle<CR>
 "
 " CtrlP
 :nnoremap <C-p>f :CtrlP<cr>
@@ -237,8 +239,9 @@ augroup set_filetype
   " Open Nerd tree in Projects folder
   :autocmd BufEnter *.cmp,*.evt,*.design,*.page :set filetype=html " Salesforce files
   :autocmd BufEnter *.apex :set filetype=apexcode " Salesforce files
-  :autocmd BufEnter *.tsx :set filetype=typescript.tsx
-  :autocmd BufEnter *.jsx :set filetype=javascript.jsx
+  :autocmd BufEnter *.tsx :set filetype=typescriptreact
+  :autocmd BufEnter *.jsx :set filetype=javascriptreact
+  " :autocmd BufEnter *.jsx :set filetype=javascript.jsx
   " :autocmd TabEnter * :NERDTree Documents/Projects/ 
 augroup END
 " End BufEnter Auto commands }}}
@@ -288,6 +291,10 @@ augroup jupyter_notebooks
 augroup END
 "}}}
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+" let g:prettier#autoformat_config_present = 1
+" let g:prettier#autoformat_require_pragma = 0
 " End FileType Auto commands}}}
 
 " End Auto commands}}}
@@ -376,7 +383,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'machakann/vim-highlightedyank'
   Plug 'junegunn/vim-peekaboo'
   Plug 'jparise/vim-graphql'
-
+  Plug 'pangloss/vim-javascript'
+  Plug 'mxw/vim-jsx'
+  " Plug 'prettier/vim-prettier', { 'do': 'yarn install' } " removing in favour of coc prettier
 call plug#end()
 
 
@@ -387,6 +396,12 @@ let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_browser='Google Chrome'
 let vim_markdown_preview_github=1
 let g:highlightedyank_highlight_duration = 300
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
 
 " FZF.vim now supports this command out of the box
 :nnoremap <C-f>g :Rg -g '*.*'<space> ''<left>
@@ -454,7 +469,7 @@ let g:lightline = {
       \ 'colorscheme': 'PaperColor',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head'
