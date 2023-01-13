@@ -115,8 +115,12 @@ plugins=(
 set editing-mode vim
 set -o vi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPS="--extended"
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_OPS="-m --height 50% --border"
+  export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+fi
+
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

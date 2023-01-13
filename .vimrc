@@ -101,20 +101,9 @@ endfunction
 " latest commmit
 :nnoremap [[v :cfirst<CR>
 
-:inoremap <C-k> <up>
-" move down with ctrl-j in insert mode.
-:inoremap <C-j> <down>
-" move up with ctrl-b in insert mode
-:inoremap <C-b> <left>
-" move up with ctrl-f in insert mode
-:inoremap <C-f> <right>
 
 " insert mode backspace with Ctrl+H
 :inoremap <C-h> <left><delete>
-" insert mode delete character under cursor with Ctrl+x
-:inoremap <C-x> <delete>
-" insert mode delete next character
-:inoremap <C-l> <right><delete><left>
 
 " higlight colors
 :nnoremap <leader>hco :ColorHighlight<CR> 
@@ -334,6 +323,9 @@ if !exists('g:syntax_on')
 	syntax enable
 endif
 
+let g:AutoPairsMapCR = 0 " don't map <CR> for auto-pairs; it messes confirm auto completion
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
 call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdtree'
   Plug 'flazz/vim-colorschemes'
@@ -385,36 +377,51 @@ call plug#begin('~/.vim/plugged')
   Plug 'jparise/vim-graphql'
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
-  " Plug 'prettier/vim-prettier', { 'do': 'yarn install' } " removing in favour of coc prettier
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+" or                                , { 'branch': '0.1.x' }
+  Plug 'nvim-tree/nvim-web-devicons' 
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  " Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+"  " Plug 'prettier/vim-prettier', { 'do': 'yarn install' } " removing in favour of coc prettier
 call plug#end()
 
 
 " unblevable/quick-scope 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T', '/', '?']
 
+
 let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_browser='Google Chrome'
 let vim_markdown_preview_github=1
 let g:highlightedyank_highlight_duration = 300
 
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
+" command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+" command! -bang -nargs=* Rg
+"   \ call fzf#vim#grep(
+"   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+"   \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
 
 " FZF.vim now supports this command out of the box
 :nnoremap <C-f>g :Rg -g '*.*'<space> ''<left>
 " :nnoremap <C-f>g :CocCommand fzf-preview.ProjectGrep 
 " :nnoremap <C-f>f :FZF<CR>
-:nnoremap <C-f>f :CocCommand fzf-preview.ProjectFiles<CR>
-" :nnoremap <C-f>b :Buffers<CR>
-:nnoremap <C-f>b :CocCommand fzf-preview.Buffers<CR>
+"
+:nnoremap <C-f>f :CocCommand fzf-preview.GitFiles<CR>
+" :nnoremap <C-f>f :Telescope git_files<CR>
+" :nnoremap <C-f>f :GFiles<CR>
+:nnoremap <C-f>b :Buffers<CR>
+" :nnoremap <C-f>b :CocCommand fzf-preview.Buffers<CR>
+" :nnoremap <C-f>b :CocCommand fzf-preview.Buffers<CR>
 " :nnoremap <C-f>b :Buffers<CR>
 :nnoremap <C-f>c :CocCommand fzf-preview.GitBranches<CR>
 
 let g:fzf_preview_use_dev_icons = 1
-let g:fzf_preview_command = 'bat --color=always --plain --number --theme="Monokai Extended" {-1}' " Installed bat
+let g:fzf_preview_command = 'COLORTERM=truecolor bat --color=always --theme="Dracula" --plain --number {-1}' " Installed bat
+" let $FZF_PREVIEW_COMMAND="COLORTERM=truecolor bat --style=numbers --color=always {}"
+let g:coc_fzf_location_delay = 0
 "
 "" coc.nvim config start
 nmap <silent> gd <Plug>(coc-definition)
@@ -441,11 +448,12 @@ set shortmess+=c
 set signcolumn=yes
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
+
 " Show commands
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " nnoremap <silent> <space>c  :<C-u>CocFzfListCommands<cr>
 nnoremap <silent> <space>a  :CocDiagnostics<CR>
-nnoremap <silent> <space>f  :CocFix<CR>
+nnoremap <silent> <space>f  <Plug>(coc-codeaction)
 nnoremap <silent> <space>e  :CocExtensions<CR>
 nnoremap <silent> <space>l  :CocLocation<CR>
 nnoremap <silent> <space>o  :CocFzfListOutline<CR>
@@ -472,7 +480,7 @@ let g:lightline = {
       \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \   'gitbranch': 'FugitiveHead'
       \ },
       \ }
 
@@ -487,3 +495,5 @@ set guioptions-=e  " Don't use GUI tabline
 let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
 let g:vim_markdown_fenced_languages = ['javascript=js', 'python=py', 'html=html', 'css=css']
 let g:vim_markdown_folding_level = 2
+
+

@@ -3,6 +3,7 @@
   "salesforcedx-vscode-apex.java.home": "/Library/Java/JavaVirtualMachines/jdk-11.0.7.jdk/Contents/Home",
   "tailwindCSS.htmlLanguages": ["html", "xhtml"],
   "tailwindCSS.headwind.runOnSave": false,
+  "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "html",
