@@ -26,6 +26,7 @@ recommended setting it up in NeoVim. The feel is expected to be similar, though.
 
 - Make sure that you have installed the following(*Using Homebrew recommended*):
   - Vim > 8.* or NeoVim
+  - [vim Plug](https://github.com/junegunn/vim-plug) - for (Neo)vim plugins
   - tmux
     - and [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm)
   - [oh-my-zsh](https://ohmyz.sh/) - manage your zsh configuration and add themes and plugins
