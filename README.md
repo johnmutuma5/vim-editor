@@ -64,6 +64,7 @@ Run `:PlugInstall` inside (Neo)vim. Or shortcut `<leader>I`
  - `k` - Cursor up a line
  - `gq` - Quit current buffer
  - `<C-T>o` - Quit all tabs except current
+ - `<C-W>o` - Quit all window in current tab except current window
 
 ### Setting up terminal devicons
 This will enable Vim/NeoVim to display nerd icons e.g. File Extension icons on NERDTree etc.
