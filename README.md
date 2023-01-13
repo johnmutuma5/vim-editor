@@ -45,6 +45,8 @@ This will help to make sure that set up and configuration files such as:
 - .tmux.conf
 - [coc.nvim](https://github.com/neoclide/coc.nvim) configuration file
 
+### Add vim plugins
+Run `:PlugInstall` inside (Neo)vim. Or <leader>I
 
 ### Setting up terminal devicons
 This will enable Vim/NeoVim to display nerd icons e.g. File Extension icons on NERDTree etc.
