@@ -48,6 +48,23 @@ This will help to make sure that set up and configuration files such as:
 ### Add vim plugins
 Run `:PlugInstall` inside (Neo)vim. Or shortcut `<leader>I`
 
+### Add required coc-plugins
+`CocInstall coc-fzf-preview` 
+
+### Useful mappings
+### Normal mode
+ - `<C-f>f` - Searches git files with `:CocCommand fzf-preview.GitFiles`
+ - `<C-f>c` - Searches git branches with `:CocCommand fzf-preview.GitBranches`
+ - `<C-f>b` - Searches recently opened buffers
+ - `<Space>c` - Searches Coc.nvim commands with `:CocCommand`
+ - `gd` - Go to Definition
+ - `gi` - Go to Implementation
+ - `gr` - Go to References
+ - `j` - Cursor down a line
+ - `k` - Cursor up a line
+ - `gq` - Quit current buffer
+ - `<C-T>o` - Quit all tabs except current
+
 ### Setting up terminal devicons
 This will enable Vim/NeoVim to display nerd icons e.g. File Extension icons on NERDTree etc.
 
