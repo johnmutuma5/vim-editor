@@ -52,10 +52,10 @@ Run `:PlugInstall` inside (Neo)vim. Or shortcut `<leader>I`
 `CocInstall coc-fzf-preview` 
 
 ### Useful mappings
-### Normal mode
- - `<C-f>f` - Searches git files with `:CocCommand fzf-preview.GitFiles`
- - `<C-f>c` - Searches git branches with `:CocCommand fzf-preview.GitBranches`
- - `<C-f>b` - Searches recently opened buffers
+#### Normal mode
+ - `<C-F>f` - Searches git files with `:CocCommand fzf-preview.GitFiles`
+ - `<C-F>c` - Searches git branches with `:CocCommand fzf-preview.GitBranches`
+ - `<C-F>b` - Searches recently opened buffers
  - `<Space>c` - Searches Coc.nvim commands with `:CocCommand`
  - `gd` - Go to Definition
  - `gi` - Go to Implementation
