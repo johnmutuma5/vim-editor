@@ -97,9 +97,9 @@ let g:NERDTreeDisableFileExtensionHighlight = 0
 let g:NERDTreeFileExtensionHighlightFullName = 1
 
 let g:DevIconsEnableFoldersOpenClose = 1
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = '🗂 '   
-let g:DevIconsDefaultFolderCloseSymbol = '🗂  '
-let g:DevIconsDefaultFolderOpenSymbol = '📂 '
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = '🗂'   
+let g:DevIconsDefaultFolderCloseSymbol = '🗂'
+let g:DevIconsDefaultFolderOpenSymbol = '📂'
 let g:NERDTreeDisablePatternMatchHighlight = 1
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
 let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
