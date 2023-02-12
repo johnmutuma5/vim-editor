@@ -92,7 +92,7 @@ We can use PMD with ALE plugin to provdie Salesforce's APEX linting abilities.
 
     - etc
 
-<img width="1792" alt="Screenshot 2021-11-11 at 19 09 49" src="https://user-images.githubusercontent.com/23254512/141330710-578350cf-4d06-4bb7-a807-65ab808dcf4e.png">
+<img width="1792" alt="Screenshot 2021-11-11 at 19 09 49" src="./examples/Workspace.png">
 
 ```
 .oPYo.                    8     o                         88 88 88 
