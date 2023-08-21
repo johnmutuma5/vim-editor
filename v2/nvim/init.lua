@@ -24,3 +24,8 @@ require("johnmutuma.plugins.autopairs")
 require("johnmutuma.plugins.treesitter")
 require("johnmutuma.plugins.indent-blankline")
 require("johnmutuma.plugins.vim-fugitive")
+
+require("johnmutuma.plugins.glance")
+
+-- ide / workspace
+require("johnmutuma.plugins.nvim-ide")
