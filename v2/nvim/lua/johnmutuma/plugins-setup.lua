@@ -26,9 +26,11 @@ end
 
 return packer.startup(function(use)
 	-- My plugins here
-	-- use 'foo1/bar1.nvim'
-	use("wbthomason/packer.nvim")
 
+	use("wbthomason/packer.nvim")
+	-- use 'foo1/bar1.nvim'
+	-- workspace
+	use("ldelossa/nvim-ide")
 	-- preferred colorscheme
 	use("dracula/vim") -- preferred colorscheme
 	use("sainnhe/sonokai")
@@ -155,7 +157,16 @@ return packer.startup(function(use)
 	use("junegunn/vim-peekaboo") -- higlight contents of registers
 	use("mattn/emmet-vim") -- just emmet
 	use("unblevable/quick-scope") -- quickly jump horizontally
-
+	use("rcarriga/nvim-notify")
+	use({
+		"dnlhc/glance.nvim",
+		config = function()
+			require("glance").setup({
+				-- your configuration
+			})
+		end,
+	})
+	--
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then

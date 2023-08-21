@@ -76,10 +76,14 @@ local keymap = vim.keymap
 local on_attach = function(client, bufnr)
 	local opts = { noremap = true, buffer = bufnr, silent = true }
 	-- LSP key bindings
-	keymap.set("n", "gR", "<cmd>Lspsaga finder<CR>", opts)
-	keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+	keymap.set("n", "gR", "<cmd>Glance references<CR>", opts)
+	-- keymap.set("n", "gR", "<cmd>Lspsaga finder<CR>", opts)
 	keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts)
-	keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+	keymap.set("n", "gd", "<cmd>Glance definitions<CR>", opts)
+	keymap.set("n", "gi", "<cmd>Glance implementations<CR>")
+	keymap.set("n", "gT", "<cmd>Glance type_definitions<CR>")
+	keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+	-- keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 	-- keymap.set("n", "gr", vim.lsp.buf.references, opts)
 	keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
 	keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts)

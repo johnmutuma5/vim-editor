@@ -6,7 +6,8 @@ if not success then
 end
 
 -- local config = lualine.get_config();
-local my_extension = { sections = { lualine_a = { "" } }, filetypes = { "NvimTree", "packer", "" } }
+local my_extension =
+	{ sections = { lualine_a = { "" } }, filetypes = { "NvimTree", "packer", "", "filetree", "bufferlist" } }
 lualine.setup({
 	sections = {
 		lualine_a = { "mode" },

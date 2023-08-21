@@ -55,3 +55,4 @@ opt.completeopt = "menu,menuone,noselect"
 
 --
 globl.qs_highlight_on_keys = { "f", "F", "t", "T", "/", "?" }
+globl.sonokai_enable_italic = true

@@ -23,6 +23,7 @@ local set_up_linters_and_formatters = function()
 			"prettier",
 			"stylua",
 			"eslint",
+			"cspell",
 		},
 	})
 end

@@ -26,6 +26,7 @@ local set_up_linters_and_formatters = function(on_attach)
 			code_actions.gitsigns,
 			formatting.stylua,
 			formatting.prettier,
+			-- diagnostics.cspell,
 			-- diagnostics.eslint.with({
 			--   name = "vs-code-eslint",
 			--   meta = {
