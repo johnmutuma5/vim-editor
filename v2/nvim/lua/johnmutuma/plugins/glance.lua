@@ -10,15 +10,17 @@ glance.setup({
 })
 
 vim.cmd([[
-  :hi GlanceBorderTop gui=underline guifg=#ededed guibg=#101623
-  :hi GlanceWinBarFilepath gui=italic guibg=#131417
-  :hi GlanceWinBarFilename gui=none guibg=#131417
-  :hi GlanceWinBarTitle gui=none guibg=#131417
+  :hi GlanceBorderTop gui=underline guifg=#ededed guibg=#10110A
+
+  :hi GlanceWinBarFilepath gui=italic guibg=#14140F
+  :hi GlanceWinBarFilename gui=none guibg=#14140F
+  :hi GlanceWinBarTitle gui=none guibg=#14140F
 
   :hi GlancePreviewBorderBottom gui=underline guifg=#eeeeee
 
-  :hi GlanceListCursorLine gui=none guibg=#41454d
-  :hi GlanceListBorderBottom gui=underline guifg=#eeeeee guibg=#14181e
-  :hi GlanceListNormal gui=none guibg=#14181e
-  :hi GlanceListEndOfBuffer gui=none guibg=#14181e
+  :hi GlanceListCursorLine gui=none guibg=#656661
+
+  :hi GlanceListBorderBottom gui=underline guifg=#eeeeee "guibg=#1D1D1D
+  " :hi GlanceListNormal gui=none guibg=#1D1D1D
+  " :hi GlanceListEndOfBuffer gui=none guibg=#1D1D1D
 ]])

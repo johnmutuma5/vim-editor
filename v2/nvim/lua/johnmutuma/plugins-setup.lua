@@ -25,12 +25,54 @@ if not success then
 end
 
 return packer.startup(function(use)
+	use("wbthomason/packer.nvim")
 	-- My plugins here
 
-	use("wbthomason/packer.nvim")
+	use({
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+		},
+	})
 	-- use 'foo1/bar1.nvim'
 	-- workspace
 	use("ldelossa/nvim-ide")
+	use({
+		"folke/zen-mode.nvim",
+		config = function()
+			require("zen-mode").setup({
+				window = {
+					width = 200,
+				},
+			})
+		end,
+	})
+	-- lazy.nvim
+	use({
+		"folke/noice.nvim",
+		-- event = "VeryLazy",
+		opts = {
+			-- add any options here
+		},
+		requires = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		},
+	})
+	use({ "folke/tokyonight.nvim" })
+	use({
+		"simrat39/symbols-outline.nvim",
+		config = function()
+			require("symbols-outline").setup()
+		end,
+	})
 	-- preferred colorscheme
 	use("dracula/vim") -- preferred colorscheme
 	use("sainnhe/sonokai")
@@ -140,7 +182,7 @@ return packer.startup(function(use)
 		"jay-babu/mason-null-ls.nvim",
 		requires = { "jose-elias-alvarez/null-ls.nvim" },
 	})
-	use("lewis6991/gitsigns.nvim")
+	--use("lewis6991/gitsigns.nvim")
 
 	-- working with VCS, git
 	use("tpope/vim-fugitive")

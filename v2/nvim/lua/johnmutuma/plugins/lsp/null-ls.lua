@@ -21,9 +21,9 @@ local diagnostics = null_ls.builtins.diagnostics
 -- Configure linters, formatters, diagnostics, code actions
 local set_up_linters_and_formatters = function(on_attach)
 	null_ls.setup({
-		debug = true,
+		debug = false,
 		sources = {
-			code_actions.gitsigns,
+			-- code_actions.gitsigns,
 			formatting.stylua,
 			formatting.prettier,
 			-- diagnostics.cspell,
@@ -58,7 +58,7 @@ local configure_format_on_save = function(client, bufnr)
 			callback = function()
 				-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
 				-- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
-				vim.lsp.buf.format({ async = false })
+				vim.lsp.buf.format({ async = false, timeout_ms = 2000 })
 			end,
 		})
 	end

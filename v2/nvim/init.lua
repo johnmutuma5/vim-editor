@@ -16,7 +16,7 @@ require("johnmutuma.plugins.lsp.mason")
 require("johnmutuma.plugins.lsp.lspconfig")
 require("johnmutuma.plugins.lsp.coc-nvim")
 require("johnmutuma.plugins.lsp.lspsaga")
-require("johnmutuma.plugins.lsp.gitsigns")
+-- require("johnmutuma.plugins.lsp.gitsigns")
 require("johnmutuma.plugins.lsp.null-ls")
 
 --
@@ -29,3 +29,5 @@ require("johnmutuma.plugins.glance")
 
 -- ide / workspace
 require("johnmutuma.plugins.nvim-ide")
+require("johnmutuma.plugins.noice")
+require("johnmutuma.plugins.neo-tree")
