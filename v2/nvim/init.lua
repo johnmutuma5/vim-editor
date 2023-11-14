@@ -16,6 +16,7 @@ require("johnmutuma.plugins.lsp.mason")
 require("johnmutuma.plugins.lsp.lspconfig")
 require("johnmutuma.plugins.lsp.coc-nvim")
 require("johnmutuma.plugins.lsp.lspsaga")
+-- require("johnmutuma.plugins.lsp.lsp-lens")
 -- require("johnmutuma.plugins.lsp.gitsigns")
 require("johnmutuma.plugins.lsp.null-ls")
 

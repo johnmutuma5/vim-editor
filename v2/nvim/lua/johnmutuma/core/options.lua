@@ -28,7 +28,7 @@ opt.hlsearch = true
 -- other appearance settings
 opt.cursorline = true
 opt.termguicolors = true
-opt.background = "dark"
+-- opt.background = "dark"
 opt.colorcolumn = "118"
 
 -- backspace

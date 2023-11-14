@@ -2,9 +2,12 @@
 local globl = vim.g
 
 globl.sonokai_enable_italic = true
-local success, _ = pcall(vim.cmd, "colorscheme tokyonight-moon")
+-- local success_colorscheme, _ = pcall(vim.cmd, "colorscheme tokyonight-day")
+-- local success_background, _ = pcall(vim.cmd, "set background=dark")
+local success_colorscheme, _ = pcall(vim.cmd, "colorscheme vscode")
+local success_background, _ = pcall(vim.cmd, "set background=light")
 
-if not success then
+if not (success_colorscheme and success_background) then
 	print("Colorscheme not found")
 	return
 end

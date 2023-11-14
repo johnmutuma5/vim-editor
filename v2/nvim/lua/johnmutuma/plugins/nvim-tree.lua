@@ -23,7 +23,7 @@ nvimTree.setup({
 		ignore_list = { "node_modules" },
 	},
 	view = {
-		width = 38,
+		width = 45,
 	},
 	renderer = {
 		indent_markers = {
@@ -35,3 +35,9 @@ nvimTree.setup({
 vim.cmd([[
   :hi NvimTreeCursorLine guibg=#444548
 ]])
+
+if vim.opt.background:get() == "light" then
+	vim.cmd([[
+    :hi NvimTreeCursorLine guibg=#c1c1c1 guifg=white
+  ]])
+end

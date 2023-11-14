@@ -1,4 +1,13 @@
 require("noice").setup({
+	routes = {
+		{
+			filter = {
+				event = "msg_show",
+				kind = "search_count",
+			},
+			opts = { skip = true },
+		},
+	},
 	cmdline = {
 		-- view = "cmdline",
 		format = { cmdline = { icon = "_" } },

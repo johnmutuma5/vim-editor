@@ -8,6 +8,7 @@ globl.indentLine_char = "│"
 opt.list = true
 -- opt.listchars:append("eol:↴")
 
-require("indent_blankline").setup({
-	show_end_of_line = true,
+require("ibl").setup({
+	-- show_end_of_line = true,
+	scope = { enabled = false },
 })

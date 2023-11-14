@@ -30,7 +30,7 @@ keymap.set("n", "<leader>w<CR>", ":noautocmd w<CR>")
 
 -- Plugins mappings
 -- nvim-tree
-keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>:<CR>")
+keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>:<CR>$")
 -- keymap.set("n", "<C-n>", ":Neotree<CR>:<CR>")
 
 -- -- telescope
